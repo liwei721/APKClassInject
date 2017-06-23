@@ -1,0 +1,28 @@
+{
+  "className": [
+    {
+      "classMatchType": "wildcard",
+      "modifyMethods": "on**|!android**",
+      "methodName": "on**|!android**",
+      "methodMatchType": "wildcard",
+      "methodDesc": "()V",
+      "InjectClass": "com.xx.xx.xx",
+      "InjectMethod": "onClickthis",
+      "InjectMethodDesc" : "()V",
+      "InjectMethodParams" :[]
+    }
+  ],
+  "*className": [
+    {
+      "classMatchType": "wildcard",
+      "modifyMethods": "on**|!android**",
+      "methodName": "on**|!android**",
+      "methodMatchType": "wildcard",
+      "methodDesc": "()V",
+      "InjectClass": "com.xx.xx.xx",
+      "InjectMethod": "onClickthis",
+      "InjectMethodDesc" : "()V",
+      "InjectMethodParams" :[]
+    }
+  ]
+}

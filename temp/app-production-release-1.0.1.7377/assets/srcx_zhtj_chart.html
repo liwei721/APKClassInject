@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="ichart.1.2.min.js"></script>
+<script type="text/javascript">
+var  data = new  Array();  
+var  data1 = new  Array();  
+var  datab = new  Array();  
+var  zzdata  =  window .mainChart.getDatas(); 
+var  zxdata  =  window .mainChart.getDatas1(); 
+var  bzdata =   window.mainChart.getPieDatas();   //饼图
+var i=window.mainChart.getPiecheck();
+data = eval(zzdata); 
+data1 =  eval(zxdata); 
+datab = eval(bzdata);      //饼图数据
+$(function(){
+		//饼图
+		var chartb = new iChart.Pie3D({
+			render : 'bcanvasDiv',
+			data: datab,
+			sub_option : {
+				mini_label_threshold_angle : 40,//迷你label的阀值,单位:角度
+				mini_label:{//迷你label配置项
+					fontsize:30,
+					fontweight:600,
+					color : '#ffffff'
+				},
+				label : {
+					background_color:null,
+					sign:false,//设置禁用label的小图标
+					padding:'0 4',
+					border:{
+						enable:false,
+						color:'#666666'
+					},
+					fontsize:30,
+					fontweight:600,
+					color : '#4572a7'
+				},
+				border : {
+					width : 2,
+					color : '#ffffff'
+				},
+				listeners:{
+					parseText:function(d, t){
+						return d.get('value')+"%";//自定义label文本
+					}
+				} 
+			},
+			legend:{
+				enable:true,
+				padding:0,
+				offsetx:30,
+				offsety:30,
+				column:1,
+				color:'#3e576f',
+				fontsize:30,//文本大小
+				sign_size:20,//小图标大小
+				line_height:35,//设置行高
+				sign_space:10,//小图标与文本间距
+				border:false,
+				align:'left',
+				background_color : null//透明背景
+			}, 
+			shadow : true,
+			shadow_blur : 6,
+			shadow_color : '#aaaaaa',
+			shadow_offsetx : 0,
+			shadow_offsety : 0,
+			background_color:'#f4f4f4',
+			mutex : true,//只允许一个扇形弹出
+			align:'right',//右对齐
+			offsetx:-150,//设置向x轴负方向偏移位置60px
+			offset_angle:-90,//逆时针偏移120度
+			width : 940,
+			height : 500,
+			radius:250
+		});
+		chartb.bound(i);
+//柱状图
+	var chart = new iChart.Column2D({
+				render : 'canvasDiv',
+				data : data,
+				width : 940,
+				height : 500,
+				padding:0,
+				label : {
+					fontsize:30,
+					fontweight:600,
+					color : '#666666'
+				},
+				shadow : true,
+				shadow_blur : 2,
+				shadow_color : '#aaaaaa',
+				shadow_offsetx : 1,
+				shadow_offsety : 0,
+				background_color : '#f4f4f4',
+				column_width : 40,
+				coordinate : {
+					background_color : null,
+					grid_color : '#c0c0c0',
+					width : 680,
+					height:280,
+					axis : {
+						color : '#c0d0e0',
+						width : [1, 1, 1, 1]
+					},
+					scale : [{   
+						position : 'left',
+						scale_share:2,
+						scale_enable : false,
+						label : {
+							fontsize:30,
+							fontweight:600,
+							color : '#34a1d9'
+						}
+					}]
+				}
+			});
+			//构造折线图
+			var line = new iChart.LineBasic2D({
+				z_index:1000,
+				data: data1,
+				label:{
+					color:'#4c4f48'
+				},
+				point_space:chart.get('column_width')+chart.get('column_space'),
+				coordinate : {
+					background_color : null,
+					grid_color : '#c0c0c0',
+					width : 680,
+					height:280,
+					axis : {
+						color : '#c0d0e0',
+						width : [1, 1, 1, 1]
+					},
+					scale : [{   
+						position : 'right',
+						scale_share:1,
+						scale_enable : false,
+						label : {
+							fontsize:30,
+							fontweight:600,
+							color : '#c52120'
+						}
+					}]
+				},
+				sub_option : {
+					label:false,
+					point_size:20,
+					listeners:{
+					click:function(s,e,m){
+						sumToJavabar();
+					  }
+					} 
+				},
+				//coordinate:chart.coo//共用坐标系
+			});
+			chart.plugin(line);
+			//利用自定义组件构造左侧说明文本
+			chart.plugin(new iChart.Custom({
+					drawFn:function(){
+						//计算位置
+						var coo = chart.getCoordinate(),
+							x = coo.get('originx'),
+							y = coo.get('originy');
+						//在左上侧的位置，渲染一个单位的文字
+						chart.target.textAlign('start')
+						.textBaseline('bottom')
+						.textFont('600 30px Verdana')
+						.fillText('收入额',x-20,y-45,false,'#34a1d9')
+						.textFont('600 28px Verdana')
+						.fillText('万元',x,y-10,false,'#34a1d9');
+
+						//在右上侧的位置，渲染一个单位的文字
+						chart.target.textAlign('end')
+						.textBaseline('bottom')
+						.textFont('600 30px Verdana')
+						.fillText('比同期',x+20+coo.width,y-45,false,'#c52120')
+						.textFont('600 28px Verdana')
+						.fillText('%',x+20+coo.width,y-10,false,'#c52120');
+						
+					}
+			}));
+		chartb.draw();
+		chart.draw();
+	});
+
+  function sumToJavapie(){
+	 window.control.fangdapie(); 
+  }
+  function sumToJavabar(){
+		 window.control.fangdabar(); 
+	  }
+</script>
+</head>
+<body bgcolor="#f4f4f4">
+ 	<div align="center"  id='bcanvasDiv'  onclick="sumToJavapie()"></div> <!-- 饼图 -->
+	<br/>
+	<div align="center"  id='canvasDiv' onclick="sumToJavabar()"></div>
+</body>
+</html>
