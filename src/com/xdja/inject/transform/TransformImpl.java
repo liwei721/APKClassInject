@@ -27,6 +27,7 @@ public class TransformImpl {
 
     private static final int BUFFER = 1024;
     private static Map<String ,Integer> targetClasses = new HashMap<>();
+    private static Map<String, List<String>> classExcluds = null;
 
     /**
      *  将apk解压到临时目录中
@@ -229,6 +230,12 @@ public class TransformImpl {
             // matchType 是匹配的类型：正则、通配符、相等
             int matchType = entry.getValue();
             String key = entry.getKey();
+            List<String> clssExcs = classExcluds.get(key);
+            for (String clsssexclud : clssExcs){
+                if (InjectUtil.isPatternMatch(clsssexclud, className)){
+                    return "";
+                }
+            }
             switch (matchType){
                 case Constants.MT_FULL:
                     if (className.equals(key)){
@@ -263,10 +270,14 @@ public class TransformImpl {
     private static void initTargetClasses(SettingEntity entity){
         if (entity == null) return;
         targetClasses.clear();
+        classExcluds.clear();
         for (SettingEntity.InjectSettingsBean settingsBean : entity.getInjectSettings()){
             // 根据className的值来判断
             int type = InjectUtil.getMatchTypeByValue(settingsBean.getClassName());
             targetClasses.put(settingsBean.getClassName(), type);
+
+            // 将className，对应的classExclude放到map中
+            classExcluds.put(settingsBean.getClassName(), settingsBean.getClassExclude());
         }
     }
 
