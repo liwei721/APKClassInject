@@ -1,26 +1,16 @@
 {
-  "className": [
+  "isInject":true,
+  "showLog" : true,
+  "InjectSettings":[
     {
-      "classMatchType": "wildcard",
-      "modifyMethods": "on**|!android**",
-      "methodName": "on**|!android**",
-      "methodMatchType": "wildcard",
-      "methodDesc": "()V",
-      "InjectClass": "com.xx.xx.xx",
-      "InjectMethod": "onClickthis",
-      "InjectMethodDesc" : "()V",
-      "InjectMethodParams" :[]
-    }
-  ],
-  "*className": [
-    {
-      "classMatchType": "wildcard",
-      "modifyMethods": "on**|!android**",
-      "methodName": "on**|!android**",
-      "methodMatchType": "wildcard",
-      "methodDesc": "()V",
-      "InjectClass": "com.xx.xx.xx",
-      "InjectMethod": "onClickthis",
+      "className" : "*Activity",
+      "classExclude":["com.android.*"],
+      "modifyMethods": "",
+      "methodName": "onCreate",
+      "methodDesc": "",
+      "methodExclude" : [],
+      "InjectClass": "com.xdja.inject.MontiorTrace",
+      "InjectMethod": "log",
       "InjectMethodDesc" : "()V",
       "InjectMethodParams" :[]
     }
