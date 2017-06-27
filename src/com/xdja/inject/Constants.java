@@ -21,4 +21,7 @@ public class Constants {
     public final static String WILDCARD_STAR = "\\*{1,3}";
     public final static String WILDCARD_VLINE = "\\|{1,2}";
     public final static String REGEX_STARTER = "r:";
+
+    // default tag
+    public final static String TAG = "xdjaClassInject";
 }
