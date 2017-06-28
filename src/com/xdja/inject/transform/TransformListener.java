@@ -12,4 +12,5 @@ public interface TransformListener {
      void dexToapk(int i, String var);
      void apkSign(int i , String var);
      void finish(String var);
+     void showError(String errorMsg);
 }

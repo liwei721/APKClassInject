@@ -224,6 +224,13 @@ public class LaunchView extends JFrame implements ActionListener{
                 tipsLabel.setText("插桩任务完成！！请在 ：" + apkPath + "查看");
             }
         }
+
+        @Override
+        public void showError(String errorMsg) {
+            if (tipsLabel != null){
+                tipsLabel.setText("运行出错了，错误信息是：" + errorMsg);
+            }
+        }
     };
 
     /**
