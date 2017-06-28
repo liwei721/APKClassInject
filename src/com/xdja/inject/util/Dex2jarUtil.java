@@ -73,7 +73,7 @@ public class Dex2jarUtil {
             }
 
             String dexName = jarName2DexName(jarFile.getName());
-            String rootPath = FilesUtil.getTempDirPath();
+            String rootPath = FilesUtil.getBaseProjectPath();
             String outDexPath = rootPath + File.separator+ dexName;
             File outDexFile = new File(outDexPath);
             if (!outDexFile.getParentFile().exists()){
