@@ -1,1 +1,0 @@
-{"flag":1,"jsonObject":{"alias":"14100001732","canonical":"王旭鹏","deptid":"2.102798283","deptname":"信息中心","jsessionid":"nYmxWTcf7VVVQ07SJLVy2YjSv8nmNGTsByjw4yrTJVkGhY0vlRnP!113473574!1456725119731","powers":[{"name":"个人待办工作","number":"5553","type":"0"}],"jngg":[{"name":"局内发布","number":"0","type":"1"}],"wddb":[{"name":"个人未读待办工作","number":"4668","type":"2"}]}}

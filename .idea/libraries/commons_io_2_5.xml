@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="commons-io-2.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/commons-io-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/apache-commons-codec-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/asm-5.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

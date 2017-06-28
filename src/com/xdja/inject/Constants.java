@@ -24,4 +24,17 @@ public class Constants {
 
     // default tag
     public final static String TAG = "xdjaClassInject";
+
+    // META-INFO
+    public final static String META_INFO = "META-INF";
+
+    // UI相关
+    public final static String TITLE = "代码插桩工具";
+    public final static String VERSION = "1.0";
+
+    // 签名默认相关
+    public final static String signFileName = "androidsign.jks";
+    public final static String SIGNPWD = "60621210";
+    public final static String SIGNALIAS = "androidsign.keystore";
+
 }

@@ -30,100 +30,45 @@ public class Util {
         return str == null || "".equals(str);
     }
 
-    /**
-     *  将dex转成jar，使用dex2jar工具
-     * @param dexFile
-     * @return
-     * 
-     *
-     */
-    // TODO: 2017/6/23 这里逻辑比较混乱，待整理
-    public static String dex2jarExec(File dexFile){
-        String jarPath = "";
-        String cmd = DEX2JAR_TOOL_PATH + " -f " + dexFile;
-
-        // 运行生成jar，注意会在原文件名后面加上-dex2jar
-        runWindowCmdWithPath(cmd, dexFile.getParentFile());
-
-        // 运行完成后
-        File[] jarFiles = dexFile.getParentFile().listFiles(pathname -> {
-            if (pathname.isFile() && pathname.getName().endsWith(".jar") && pathname.getName().contains(REG_DEX2JAR)){
-                return true;
-            }
-            return false;
-        });
-
-        if (jarFiles == null || jarFiles.length < 1){
-            return jarPath;
-        }
-
-        // 正常情况下应该过滤出一个这样的jar
-        File jarFile = jarFiles[0];
-        // 这里是为了去掉-dex2jar
-        jarPath = jarFile.getAbsolutePath();
-        jarPath = jarPath.substring(0, jarPath.indexOf(REG_DEX2JAR));
-        jarPath = jarPath + ".jar";
-
-        boolean suc = jarFile.renameTo(new File(jarPath));
-        if (suc){
-            // 删除原有的dex
-            // TODO: 2017/6/23  这里dex删除失败后续再考虑
-            dexFile.delete();
-            return jarPath;
-        }
-
-        return "";
-    }
 
     /**
-     * 在指定目录中运行命令
-     *  @param cmd 指定的命令
-     *  @param path 指定的目录
-     *
-     */
-    private static void runWindowCmdWithPath(String cmd, File path){
-        if (isStrEmpty(cmd)){
-            return;
-        }
-
-        Process process = null;
-        try {
-            process = Runtime.getRuntime().exec(cmd, null, path);
-            InputStream stderr = process.getErrorStream();
-            InputStreamReader isr = new InputStreamReader(stderr);
-            BufferedReader br = new BufferedReader(isr);
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (process != null){
-                process.destroy();
-            }
-        }
-    }
-    /**
-     *  运行Windows的命令
+     *  这里 执行cmd命令没有返回值
      * @param cmd
+     * @param isOutputLog
      * @return
      */
-    private static void runWindowCmd(String cmd){
-        if (isStrEmpty(cmd)){
-            return;
-        }
-
-        Process process = null;
+    public static boolean execCmd(String cmd, boolean isOutputLog)
+    {
+        BufferedReader br = null;
         try {
-            process = Runtime.getRuntime().exec(cmd);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (process != null){
-                process.destroy();
+            Process p = Runtime.getRuntime().exec(cmd);
+            br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line = null;
+            while ((line = br.readLine()) != null)
+                if (isOutputLog)
+                    System.out.println(line);
+        }
+        catch (Exception e) {
+            System.out.println("cmd error:" + e.toString());
+
+            if (br != null)
+                try {
+                    br.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+        }
+        finally
+        {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
+        return true;
     }
 
     /**
@@ -136,13 +81,5 @@ public class Util {
         }
 
         return false;
-    }
-
-    /**
-     *  获取项目所在根目录
-     * @return
-     */
-    public static String getBaseProjectPath(){
-        return System.getProperty("user.dir");
     }
 }

@@ -2,9 +2,7 @@ package com.xdja.inject.transform;
 
 import com.xdja.inject.Constants;
 import com.xdja.inject.setting.SettingEntity;
-import com.xdja.inject.util.InjectUtil;
-import com.xdja.inject.util.Log;
-import com.xdja.inject.util.Util;
+import com.xdja.inject.util.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 import org.objectweb.asm.ClassReader;
@@ -26,8 +24,6 @@ import java.util.zip.ZipFile;
 public class TransformImpl {
 
     private static final int BUFFER = 1024;
-    private static Map<String ,Integer> targetClasses = new HashMap<>();
-    private static Map<String, List<String>> classExcluds = null;
 
     /**
      *  将apk解压到临时目录中
@@ -110,14 +106,14 @@ public class TransformImpl {
      * @return  生成的dex路径
      */
     public static List<String> dex2jar(String zipFolder){
-        List<String> dexPaths = new ArrayList<>();
+        List<String> jarPaths = new ArrayList<>(3);
         if (Util.isStrEmpty(zipFolder)){
-            return dexPaths;
+            return jarPaths;
         }
 
         File apkunZipFile = new File(zipFolder);
         if (!apkunZipFile.exists()){
-            return dexPaths;
+            return jarPaths;
         }
 
         /**
@@ -131,19 +127,14 @@ public class TransformImpl {
         });
 
         if (dexFiles == null || dexFiles.length < 1){
-            return dexPaths;
+            return jarPaths;
         }
         /**
          * 遍历dexFile，将dex转成jar
          */
-        for (int i = 0; i < dexFiles.length; i++){
-            File dexFile = dexFiles[i];
-            String dex2jarpath = Util.dex2jarExec(dexFile);
-            System.out.println("dex2jar ==  dex2jarpath = " + dex2jarpath);
-            dexPaths.add(dex2jarpath);
-        }
+        jarPaths = Dex2jarUtil.dexs2jars(dexFiles);
 
-        return dexPaths;
+        return jarPaths;
     }
 
     /**
@@ -157,7 +148,7 @@ public class TransformImpl {
         }
 
         // 对配置中的classMatchType进行处理。
-        initTargetClasses(entity);
+        InjectUtil.initTargetClasses(entity);
 
         for (String jarFileStr : jarFiles){
             // jar的File
@@ -196,7 +187,7 @@ public class TransformImpl {
                 if (entryName.endsWith(".class")){
                     String className = InjectUtil.path2Classname(entryName);
                     // 这里判断是否对class进行修改,返回的key是配置的className
-                    String key = shouldModifyClass(className);
+                    String key = InjectUtil.shouldModifyClass(className);
                     byte[] sourceClassBytes = IOUtils.toByteArray(inputStream);
 
                     if (!Util.isStrEmpty(key)){
@@ -217,68 +208,6 @@ public class TransformImpl {
 
         }
 
-    }
-
-    /**
-     * 是否应该去对class文件进行修改
-     * @param className
-     * @return
-     */
-    private static String shouldModifyClass(String className){
-        if (Util.isStrEmpty(className)) return "";
-        for (Map.Entry<String, Integer> entry : targetClasses.entrySet()){
-            // matchType 是匹配的类型：正则、通配符、相等
-            int matchType = entry.getValue();
-            String key = entry.getKey();
-            List<String> clssExcs = classExcluds.get(key);
-            for (String clsssexclud : clssExcs){
-                if (InjectUtil.isPatternMatch(clsssexclud, className)){
-                    return "";
-                }
-            }
-            switch (matchType){
-                case Constants.MT_FULL:
-                    if (className.equals(key)){
-                        return key;
-                    }
-                case Constants.MT_REGEX:
-                    if (InjectUtil.regMatch(key, className)){
-                        return key;
-                    }
-                    break;
-                case Constants.MT_WILDCARD:
-                    if (InjectUtil.wildcardMatchPro(key, className)){
-                        return key;
-                    }
-                    break;
-                default:
-                    return "";
-
-            }
-
-        }
-
-        return "";
-
-    }
-
-
-    /***
-     * 将要匹配的class及匹配类型存起来，方便后面调用
-     * @param entity
-     */
-    private static void initTargetClasses(SettingEntity entity){
-        if (entity == null) return;
-        targetClasses.clear();
-        classExcluds.clear();
-        for (SettingEntity.InjectSettingsBean settingsBean : entity.getInjectSettings()){
-            // 根据className的值来判断
-            int type = InjectUtil.getMatchTypeByValue(settingsBean.getClassName());
-            targetClasses.put(settingsBean.getClassName(), type);
-
-            // 将className，对应的classExclude放到map中
-            classExcluds.put(settingsBean.getClassName(), settingsBean.getClassExclude());
-        }
     }
 
     /**
@@ -315,4 +244,11 @@ public class TransformImpl {
         return classWriter.toByteArray();
     }
 
+    /**
+     * 删除不用的目录
+     * @param tempDir
+     */
+    public static void deleteTempDir(String tempDir){
+        FilesUtil.deleteDirectory(tempDir);
+    }
 }

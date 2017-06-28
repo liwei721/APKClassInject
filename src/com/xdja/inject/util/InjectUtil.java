@@ -1,11 +1,10 @@
 package com.xdja.inject.util;
 
 import com.xdja.inject.Constants;
+import com.xdja.inject.setting.SettingEntity;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -14,7 +13,8 @@ import java.util.regex.Pattern;
  * 用于代码注入相关的工具类
  */
 public class InjectUtil {
-
+    private static Map<String ,Integer> targetClasses = new HashMap<>();
+    private static Map<String, List<String>> classExcluds = null;
     /**
      *  判断method是否符合正则表达式
      * @param pattern
@@ -220,5 +220,67 @@ public class InjectUtil {
      */
     public static String class2Pathname(String entryName) {
         return  entryName.replace(".", File.separator);
+    }
+
+    /**
+     * 是否应该去对class文件进行修改
+     * @param className
+     * @return
+     */
+    public static String shouldModifyClass(String className){
+        if (Util.isStrEmpty(className)) return "";
+        for (Map.Entry<String, Integer> entry : targetClasses.entrySet()){
+            // matchType 是匹配的类型：正则、通配符、相等
+            int matchType = entry.getValue();
+            String key = entry.getKey();
+            List<String> clssExcs = classExcluds.get(key);
+            for (String clsssexclud : clssExcs){
+                if (InjectUtil.isPatternMatch(clsssexclud, className)){
+                    return "";
+                }
+            }
+            switch (matchType){
+                case Constants.MT_FULL:
+                    if (className.equals(key)){
+                        return key;
+                    }
+                case Constants.MT_REGEX:
+                    if (InjectUtil.regMatch(key, className)){
+                        return key;
+                    }
+                    break;
+                case Constants.MT_WILDCARD:
+                    if (InjectUtil.wildcardMatchPro(key, className)){
+                        return key;
+                    }
+                    break;
+                default:
+                    return "";
+
+            }
+
+        }
+
+        return "";
+
+    }
+
+
+    /***
+     * 将要匹配的class及匹配类型存起来，方便后面调用
+     * @param entity
+     */
+    public static void initTargetClasses(SettingEntity entity){
+        if (entity == null) return;
+        targetClasses.clear();
+        classExcluds.clear();
+        for (SettingEntity.InjectSettingsBean settingsBean : entity.getInjectSettings()){
+            // 根据className的值来判断
+            int type = InjectUtil.getMatchTypeByValue(settingsBean.getClassName());
+            targetClasses.put(settingsBean.getClassName(), type);
+
+            // 将className，对应的classExclude放到map中
+            classExcluds.put(settingsBean.getClassName(), settingsBean.getClassExclude());
+        }
     }
 }

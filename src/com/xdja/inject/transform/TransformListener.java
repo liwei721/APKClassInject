@@ -6,9 +6,10 @@ package com.xdja.inject.transform;
  */
 public interface TransformListener {
      void start();
-     void upzipApk(String path);
-     void dex2class(String path);
-     void classInject(String var);
-     void dir2Apk(String path);
-     void finish();
+     void upzipApk(int i, String path);
+     void dex2jar(int j, String path);
+     void deleteMeta(int i, String var);
+     void dexToapk(int i, String var);
+     void apkSign(int i , String var);
+     void finish(String var);
 }
