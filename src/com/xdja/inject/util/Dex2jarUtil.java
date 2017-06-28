@@ -60,10 +60,10 @@ public class Dex2jarUtil {
      * @param jarPathList
      * @return 返回jar的临时目录
      */
-    public static String  jar2Dex(List<String> jarPathList) throws IOException {
+    public static boolean  jar2Dex(List<String> jarPathList) throws IOException {
         if (Util.isListEmpty(jarPathList)){
             LogUtil.info("jar2Dex input jars path is null");
-            return "";
+            return false;
         }
 
         for (String jarPath : jarPathList){
@@ -74,33 +74,31 @@ public class Dex2jarUtil {
 
             String dexName = jarName2DexName(jarFile.getName());
             String rootPath = FilesUtil.getTempDirPath();
-            String tempDexDir = rootPath + File.separator + "tempDex";
-            String outDexPath = tempDexDir + File.separator+ dexName;
+            String outDexPath = rootPath + File.separator+ dexName;
             File outDexFile = new File(outDexPath);
             if (!outDexFile.getParentFile().exists()){
                 boolean isSuc = outDexFile.getParentFile().mkdirs();
                 if (!isSuc){
-                    return "";
+                    return false;
                 }
             }
 
             if (!outDexFile.exists()){
                 boolean isSuc = outDexFile.createNewFile();
                 if (!isSuc){
-                    return  "";
+                    return  false;
                 }
             }
 
             String[] cmd = { "--dex", "--output=" + outDexPath, jarFile.getAbsolutePath() };
             try{
                 Main.main(cmd);
-                return tempDexDir;
             }catch (Exception ex){
                 LogUtil.info(" dexName = " + " handle failed");
             }
         }
 
-        return "";
+        return true;
     }
 
     /**
@@ -149,7 +147,7 @@ public class Dex2jarUtil {
      *
      * @param apkPath
      */
-    public static boolean addDexToApk(String apkPath, String tempDir, String tempDexDir){
+    public static boolean addDexToApk(String apkPath, String tempDir){
         try {
             String rmCmd = FilesUtil.getAaptcmdPath() + " r " + new File(apkPath).getAbsolutePath();
             String addCmd = FilesUtil.getAaptcmdPath() + " a " + new File(apkPath).getAbsolutePath();
@@ -167,13 +165,15 @@ public class Dex2jarUtil {
                 }
             }
 
-            File tempDexFolder = new File(tempDexDir);
+            File tempDexFolder = new File(FilesUtil.getBaseProjectPath());
             if (tempDexFolder.exists()){
                 File[] tempDexFiles = tempDexFolder.listFiles();
                 if (tempDexFiles == null || tempDexFiles.length < 1) return false;
 
                 for (File dexFile : tempDexFiles){
-                    addCmd = addCmd + " " + dexFile.getAbsolutePath();
+                    if (dexFile.getName().endsWith(".dex")){
+                        addCmd = addCmd + " " + dexFile.getName();
+                    }
                 }
 
                 if (!Util.execCmd(addCmd, true)){

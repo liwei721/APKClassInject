@@ -70,10 +70,10 @@ public class TransformManager {
             }
 
             // 4. 将jar转成dex，使用dx工具。
-            String tempDexPath = Dex2jarUtil.jar2Dex(jars);
-            transformListener.jar2dex(3, tempDexPath);
+            boolean isSuc2 = Dex2jarUtil.jar2Dex(jars);
+            transformListener.jar2dex(3, apkPath);
 
-            if (Util.isStrEmpty(tempDexPath)) {
+            if (isSuc2) {
                 transformListener.showError("jar 转成 dex 失败了");
                 return;
             }
@@ -88,7 +88,7 @@ public class TransformManager {
 
             // 6. 将上面的dex放到apk中
             transformListener.dexToapk(5, apkPath);
-            boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, tempDir, tempDexPath);
+            boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, tempDir);
             if (!isSuc1) {
                 transformListener.showError("将dex放到apk中失败了");
                 return;
