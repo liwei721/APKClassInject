@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class InjectUtil {
     private static Map<String ,Integer> targetClasses = new HashMap<>();
-    private static Map<String, List<String>> classExcluds = null;
+    private static Map<String, List<String>> classExcluds = new HashMap<>();
     /**
      *  判断method是否符合正则表达式
      * @param pattern

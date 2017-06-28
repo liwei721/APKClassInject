@@ -131,6 +131,7 @@ public class Dex2jarCmd extends BaseCmd {
      */
     public String execDex2jar(String dexFilePath) throws IOException {
         remainingArgs = new String[]{dexFilePath};
+        forceOverwrite = true;
         // 这里是创建一个以dex名字命名的jar
         File dexFile = new File(dexFilePath);
         String dexFileName = dexFile.getName();

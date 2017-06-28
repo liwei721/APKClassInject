@@ -3,10 +3,8 @@ package com.googlecode.d2j.dex;
 import java.util.*;
 
 import com.googlecode.d2j.converter.Dex2IRConverter;
-import com.xdja.inject.transform.TransformImpl;
 import com.xdja.inject.util.ASMUtils;
 import com.xdja.inject.util.InjectUtil;
-import com.xdja.inject.util.Log;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.InnerClassNode;

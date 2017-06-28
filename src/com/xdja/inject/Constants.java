@@ -26,7 +26,7 @@ public class Constants {
     public final static String TAG = "xdjaClassInject";
 
     // META-INFO
-    public final static String META_INFO = "META-INF";
+    public final static String META_INFO = "META-INF/";
 
     // UI相关
     public final static String TITLE = "代码插桩工具";

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/XdjaApkInject.iml" filepath="$PROJECT_DIR$/XdjaApkInject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APKClassInject.iml" filepath="$PROJECT_DIR$/APKClassInject.iml" />
     </modules>
   </component>
 </project>

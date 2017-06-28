@@ -44,6 +44,6 @@ public class ASMUtils {
         if (Util.isStrEmpty(tag)) tag = Constants.TAG;
         mv.visitLdcInsn(tag);
         mv.visitLdcInsn(msg);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "android.util.Log", "d", "(Ljava/lang/String;Ljava/lang/String;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "android.util.LogUtil", "d", "(Ljava/lang/String;Ljava/lang/String;)V", false);
     }
 }
