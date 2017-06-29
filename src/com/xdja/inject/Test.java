@@ -12,7 +12,7 @@ import java.nio.file.Path;
  */
 public class Test {
     public static void main(String[] args){
-        FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", "")
+        FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", FilesUtil.getTempDirPath() + File.separator + "classes.jar");
     }
 
     private static void TestTwoStr(String str, String str1){

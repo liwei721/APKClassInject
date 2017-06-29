@@ -280,12 +280,11 @@ public class FilesUtil {
      */
     private static boolean compileJavaFile(String javaFilePath){
         try{
-            String cmd = "javac -encoding UTF-8 " + javaFilePath;
+            String cmd = "javac -encoding UTF-8 -cp " + FilesUtil.getAndroidJarPath() + " " + javaFilePath ;
             return Util.execCmd(cmd, true);
         }catch (Exception ex){
             ex.printStackTrace();
         }
-
         return false;
     }
 
@@ -338,8 +337,7 @@ public class FilesUtil {
 
         if (compileJavaFile(javaFilePath)){
             // 第二步，将class放到jar中。
-            String classFileName = FilesUtil.getBaseProjectPath() + Constants.MONITOR_CLASS;
-            return addClassFileToJar(jarPath,classFileName);
+            return addClassFileToJar(jarPath,FilesUtil.getResourcePath() + File.separator + Constants.MONITOR_CLASS);
         }
 
         return false;
@@ -370,5 +368,9 @@ public class FilesUtil {
      */
     public static String getAaptcmdPath(){
         return getBaseProjectPath() + "\\tools\\aapt.exe";
+    }
+
+    public static String getAndroidJarPath(){
+        return getBaseProjectPath() + File.separator + "tools" + File.separator + "android.jar";
     }
 }

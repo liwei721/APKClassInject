@@ -607,8 +607,6 @@ public class Dex2Asm {
         for (InjectMethodBean.InjectContentBean contentBean: contentBeans){
             ASMUtils.addStaticMethodToMethod(mv, contentBean.getInjectMethodName(), contentBean.getInjectMethodDesc(),classNameToPath(classNode.className));
         }
-
-        ASMUtils.addSystemOut(mv, "Hello");
     }
 
     /**
