@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f167fc1-05ea-44f5-bbb9-637c46015457" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes.dex" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/InjectSetting.json" afterPath="$PROJECT_DIR$/resource/InjectSetting.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/googlecode/d2j/dex/Dex2Asm.java" afterPath="$PROJECT_DIR$/src/com/googlecode/d2j/dex/Dex2Asm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformImpl.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformManager.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/util/ASMUtils.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/util/ASMUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/util/InjectUtil.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/util/InjectUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -32,16 +25,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2478">
               <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dex2jarCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/googlecode/dex2jar/tools/Dex2jarCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="179" column="36" lean-forward="false" selection-start-line="179" selection-start-column="36" selection-end-line="179" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -77,11 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransformManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TransformManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/transform/TransformManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="203">
               <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -192,7 +185,6 @@
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/Dex2jarUtil.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformListener.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/view/LaunchView.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformImpl.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/InjectUtil.java" />
@@ -200,6 +192,7 @@
         <option value="$PROJECT_DIR$/resource/InjectSetting.json" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/ASMUtils.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/transform/TransformManager.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -951,14 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/transform/TransformListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1120,6 +1105,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding />
         </state>
       </provider>
