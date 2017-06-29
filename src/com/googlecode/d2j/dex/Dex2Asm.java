@@ -9,6 +9,7 @@ import com.xdja.inject.util.ASMUtils;
 import com.xdja.inject.util.InjectUtil;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
+import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InnerClassNode;
 
 import com.googlecode.d2j.*;
@@ -19,6 +20,9 @@ import com.googlecode.dex2jar.ir.ts.*;
 import com.googlecode.dex2jar.ir.ts.array.FillArrayTransformer;
 
 public class Dex2Asm {
+
+    // 标记是否需要注入代码
+    private boolean isShouldInject = false;
 
     protected static class Clz {
         public int access;
@@ -357,6 +361,13 @@ public class Dex2Asm {
         if (cv == null) {
             return;
         }
+
+        // add by zlw 判断是否需要对当前class进行注入
+        String key = InjectUtil.shouldModifyClass(classNode.className);
+        if (!Util.isStrEmpty(key)){
+            isShouldInject = true;
+        }
+
         // the default value of static-final field are omitted by dex, fix it
         DexFix.fixStaticFinalFieldValue(classNode);
 
@@ -440,6 +451,8 @@ public class Dex2Asm {
             }
         }
         cv.visitEnd();
+
+        isShouldInject = false;
     }
 
     public void convertCode(DexMethodNode methodNode, MethodVisitor mv) {
@@ -492,6 +505,22 @@ public class Dex2Asm {
         fv.visitEnd();
     }
 
+    /**
+     *  add by zlw
+     *  对Field进行处理
+     *
+     * @param classNode
+     * @param cv
+     */
+    private void handleField(ClassNode classNode, ClassVisitor cv){
+        if (!isShouldInject){
+            return;
+        }
+
+
+    }
+
+
     public void convertMethod(DexClassNode classNode, DexMethodNode methodNode, ClassVisitor cv) {
 
         MethodVisitor mv = collectBasicMethodInfo(methodNode, cv);
@@ -539,8 +568,8 @@ public class Dex2Asm {
         if ((NO_CODE_MASK & methodNode.access) == 0) { // has code
             if (methodNode.codeNode != null) {
                 mv.visitCode();
-                // 注入自己的代码。
-                handleInjectClass(classNode, mv, cv, methodNode.method.getName());
+                // 在方法中注入自己的代码。
+                handleInjectMethod(classNode, mv, cv, methodNode.method.getName());
                 convertCode(methodNode, mv);
             }
         }
@@ -556,7 +585,7 @@ public class Dex2Asm {
      * @param mv
      * @param cv
      */
-    private void handleInjectClass(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
+    private void handleInjectMethod(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
         String key = InjectUtil.shouldModifyClass(formatClassName(classNode.className));
         if (Util.isStrEmpty(key)){
             return;
@@ -567,6 +596,7 @@ public class Dex2Asm {
             return;
         }
 
+        // 开始注入代码
         ASMUtils.addSystemOut(mv, "Hello");
     }
 

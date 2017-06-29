@@ -1,19 +1,48 @@
 {
-  "isInject":true,
-  "showLog" : true,
-  "InjectSettings":[
+  "isInject": true,
+  "showLog": true,
+  "InjectSettings": [
     {
-      "className" : "*Activity",
-      "classExclude":["com.android.*", "android.support.*"],
-      "modifyMethods": "",
-      "methodName": "onCreate",
-      "methodDesc": "",
-      "methodExclude" : [],
-      "InjectClass": "com.xdja.inject.MontiorTrace",
-      "InjectMethod": "log",
-      "InjectMethodDesc" : "()V",
-      "InjectMethodParams" :[],
-      "InjectField":""
+      "className": "*Activity",
+      "classExclude": [
+        "com.android.*",
+        "android.support.*"
+      ],
+      "InjectMethod": [
+        {
+          "methodName": "onCreate",
+          "methodDesc": "(Landroid/os/Bundle;)V",
+          "methodExclude": [],
+          "InjectContent": [
+            {
+              "InjectClass": "com.xdja.monitor.AppMonitor",
+              "InjectMethodName": "monitorPageStart",
+              "InjectMethodDesc": "(Ljava/lang/String;)V",
+              "InjectPosition": ""
+            }
+          ]
+        },
+        {
+          "methodName": "onWindowFocusChanged",
+          "methodDesc": "(Z)V",
+          "methodExclude": [],
+          "InjectContent": [
+            {
+              "InjectClass": "com.xdja.monitor.AppMonitor",
+              "InjectMethodName": "monitorPageLoaded",
+              "InjectMethodDesc": "(JLjava/lang/String;)V",
+              "InjectPosition": ""
+            }
+          ]
+        }
+      ],
+      "InjectField": [
+        {
+          "InjectMethodParams": [],
+          "InjectFieldName": "",
+          "InjectFieldClassType": ""
+        }
+      ]
     }
   ]
 }

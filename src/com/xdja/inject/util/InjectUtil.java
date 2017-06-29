@@ -17,6 +17,7 @@ public class InjectUtil {
     private static Map<String, List<String>> classExcluds = new HashMap<>();
     private static Map<String, Integer> targetMethods = new HashMap<>();
     private static Map<String, List<String>> methodExcluds = new HashMap<>();
+    private static Map<String, SettingEntity.InjectSettingsBean > targetInjectParams = new HashMap<>();
 
     public static SettingEntity mSettingentity = null;
     /**
@@ -334,6 +335,22 @@ public class InjectUtil {
 
             // 将method过滤项放到map中
             methodExcluds.put(settingsBean.getMethodName(), (List<String>) settingsBean.getMethodExclude());
+
+            // 将要注入代码的信息进行存储
+            targetInjectParams.put(settingsBean.getClassName(), settingsBean);
         }
+    }
+
+    /**
+     *  获取className对应的插桩参数
+     * @param className
+     * @return
+     */
+    public static SettingEntity.InjectSettingsBean getInjectParams(String className){
+        if (Util.isStrEmpty(className)){
+            return null;
+        }
+
+        return targetInjectParams.get(className);
     }
 }
