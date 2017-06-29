@@ -79,19 +79,19 @@ public class MethodFilterClassVisitor extends ClassVisitor implements Opcodes{
         MethodVisitor myMv = null;
         for (SettingEntity.InjectSettingsBean settingsBean : settingsBeans){
             String className = settingsBean.getClassName();
-           String methodName = settingsBean.getMethodName();
-           String methodDesc = settingsBean.getMethodDesc();
-           List<String> methodExclude = (List<String>) settingsBean.getMethodExclude();
-           if (InjectUtil.isPatternMatch(methodName, name)){
-                // 判断哪些方法是不执行的。
-               if (!Util.isListEmpty(methodExclude)){
-                   for (String methodExc : methodExclude){
-                       if (!InjectUtil.isPatternMatch(methodExc, name)){
-                           myMv = new MethodInjectAdapter(cv.visitMethod(access, name, desc, signature, exceptions), className, methodName, methodDesc);
-                       }
-                   }
-               }
-           }
+//           String methodName = settingsBean.getMethodName();
+//           String methodDesc = settingsBean.getMethodDesc();
+//           List<String> methodExclude = (List<String>) settingsBean.getMethodExclude();
+//           if (InjectUtil.isPatternMatch(methodName, name)){
+//                // 判断哪些方法是不执行的。
+//               if (!Util.isListEmpty(methodExclude)){
+//                   for (String methodExc : methodExclude){
+//                       if (!InjectUtil.isPatternMatch(methodExc, name)){
+//                           myMv = new MethodInjectAdapter(cv.visitMethod(access, name, desc, signature, exceptions), className, methodName, methodDesc);
+//                       }
+//                   }
+//               }
+//           }
         }
 
         if (myMv != null){

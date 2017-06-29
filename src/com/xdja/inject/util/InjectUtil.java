@@ -6,6 +6,7 @@ import com.xdja.inject.setting.SettingEntity;
 import java.io.File;
 import java.util.*;
 import java.util.regex.Pattern;
+import com.xdja.inject.setting.SettingEntity.InjectSettingsBean.InjectMethodBean;
 
 /**
  * Created by zlw on 2017/6/26.
@@ -17,7 +18,7 @@ public class InjectUtil {
     private static Map<String, List<String>> classExcluds = new HashMap<>();
     private static Map<String, Integer> targetMethods = new HashMap<>();
     private static Map<String, List<String>> methodExcluds = new HashMap<>();
-    private static Map<String, SettingEntity.InjectSettingsBean > targetInjectParams = new HashMap<>();
+    private static Map<String, List<InjectMethodBean.InjectContentBean> > targetInjectParams = new HashMap<>();
 
     public static SettingEntity mSettingentity = null;
     /**
@@ -325,19 +326,20 @@ public class InjectUtil {
             // 根据className的值来判断
             int type = InjectUtil.getMatchTypeByValue(settingsBean.getClassName());
             targetClasses.put(settingsBean.getClassName(), type);
-
             // 将className，对应的classExclude放到map中
             classExcluds.put(settingsBean.getClassName(), settingsBean.getClassExclude());
 
             // 对method进行处理
-            int methodType = InjectUtil.getMatchTypeByValue(settingsBean.getMethodName());
-            targetMethods.put(settingsBean.getMethodName(), type);
 
-            // 将method过滤项放到map中
-            methodExcluds.put(settingsBean.getMethodName(), (List<String>) settingsBean.getMethodExclude());
+            for (SettingEntity.InjectSettingsBean.InjectMethodBean methodBean : settingsBean.getInjectMethod()){
+                int methodType = InjectUtil.getMatchTypeByValue(methodBean.getMethodName());
+                targetMethods.put(methodBean.getMethodName(), methodType);
+                // 将method过滤项放到map中
+                methodExcluds.put(methodBean.getMethodName(), (List<String>) methodBean.getMethodExclude());
 
-            // 将要注入代码的信息进行存储
-            targetInjectParams.put(settingsBean.getClassName(), settingsBean);
+                // 将要注入代码的信息进行存储
+                targetInjectParams.put(settingsBean.getClassName() + methodBean.getMethodName(), methodBean.getInjectContent());
+            }
         }
     }
 
@@ -346,11 +348,11 @@ public class InjectUtil {
      * @param className
      * @return
      */
-    public static SettingEntity.InjectSettingsBean getInjectParams(String className){
-        if (Util.isStrEmpty(className)){
+    public static List<InjectMethodBean.InjectContentBean> getInjectParams(String className, String methodName){
+        if (Util.isStrEmpty(className) || Util.isStrEmpty(methodName)){
             return null;
         }
 
-        return targetInjectParams.get(className);
+        return targetInjectParams.get(className + methodName);
     }
 }

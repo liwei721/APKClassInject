@@ -18,6 +18,8 @@ import com.googlecode.d2j.node.*;
 import com.googlecode.dex2jar.ir.IrMethod;
 import com.googlecode.dex2jar.ir.ts.*;
 import com.googlecode.dex2jar.ir.ts.array.FillArrayTransformer;
+import com.xdja.inject.setting.SettingEntity.InjectSettingsBean.InjectMethodBean;
+
 
 public class Dex2Asm {
 
@@ -586,7 +588,7 @@ public class Dex2Asm {
      * @param cv
      */
     private void handleInjectMethod(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
-        String key = InjectUtil.shouldModifyClass(formatClassName(classNode.className));
+        String key = InjectUtil.shouldModifyClass(pathToClassName(classNode.className));
         if (Util.isStrEmpty(key)){
             return;
         }
@@ -597,14 +599,41 @@ public class Dex2Asm {
         }
 
         // 开始注入代码
+        List<InjectMethodBean.InjectContentBean> contentBeans = InjectUtil.getInjectParams(key, methodKey);
+        if (Util.isListEmpty(contentBeans)){
+            return;
+        }
+
+        for (InjectMethodBean.InjectContentBean contentBean: contentBeans){
+            ASMUtils.addStaticMethodToMethod(mv, contentBean.getInjectMethodName(), contentBean.getInjectMethodDesc(),classNameToPath(classNode.className));
+        }
+
         ASMUtils.addSystemOut(mv, "Hello");
     }
 
     /**
+     * 将className转成path
+     * @param className
+     * @return
+     */
+    private String classNameToPath(String className){
+        // 去掉最前面的L
+        if (className.startsWith("L")){
+            className = className.substring(1);
+        }
+
+        // 将/变成.
+        if (className.contains("/")){
+            className = className.replace("/", ".");
+        }
+
+        return className;
+    }
+    /**
      * 将className最后面的；去掉
      * @return
      */
-    private String formatClassName(String className){
+    private String pathToClassName(String className){
         // 去掉最前面的L
         if (className.startsWith("L")){
             className = className.substring(1);

@@ -1,9 +1,12 @@
 package com.xdja.inject.util;
 
+import com.xdja.inject.Constants;
+
 import java.io.*;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by zlw on 2017/6/28.
@@ -213,6 +216,133 @@ public class FilesUtil {
         }
 
         return isSuc;
+    }
+
+    /**
+     *  将File放到zip文件中
+     * @param fileName
+     * @param zipFileName
+     * @param newZipFileName
+     */
+    public static void addFileToZipFile(String fileName, String zipFileName, String newZipFileName)
+    {
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            int len = 0;
+            byte[] buffer = new byte[1024];
+            while ((len = fis.read(buffer)) > 0) {
+                bos.write(buffer, 0, len);
+            }
+
+            ZipFile war = new ZipFile(zipFileName);
+            ZipOutputStream append = new ZipOutputStream(new FileOutputStream(newZipFileName));
+
+            Enumeration entries = war.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry e = (ZipEntry)entries.nextElement();
+                append.putNextEntry(e);
+                if (!e.isDirectory()) {
+                    copy(war.getInputStream(e), append);
+                }
+                append.closeEntry();
+            }
+            ZipEntry e = new ZipEntry(Constants.MONITOR_CLASSNAME.replace(".", "/") + ".class");
+            append.putNextEntry(e);
+            append.write(bos.toByteArray());
+            append.closeEntry();
+
+            war.close();
+            append.close();
+        } catch (Exception localException) {
+        }
+    }
+
+    /**
+     *  copy 数据
+     * @param input
+     * @param output
+     * @throws IOException
+     */
+    public static void copy(InputStream input, OutputStream output) throws IOException
+    {
+        byte[] BUFFER = new byte[4194304];
+        int bytesRead;
+        while ((bytesRead = input.read(BUFFER)) != -1)
+        {
+            output.write(BUFFER, 0, bytesRead);
+        }
+    }
+    /**
+     *  对java文件进行编译
+     * @param javaFilePath
+     * @return
+     */
+    private static boolean compileJavaFile(String javaFilePath){
+        try{
+            String cmd = "javac -encoding UTF-8 " + javaFilePath;
+            return Util.execCmd(cmd, true);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     *  将class文件放到jar中
+     * @param JarPath
+     * @param classFilePath
+     * @return
+     */
+    public static boolean addClassFileToJar(String JarPath, String classFilePath){
+        try{
+            File oldjarFile = new File(JarPath);
+            if (!oldjarFile.exists()){
+                return false;
+            }
+            File newJarFile = new File(oldjarFile.getParent() + File.separator + "temp_" + oldjarFile.getName());
+            if (!newJarFile.exists()){
+                newJarFile.createNewFile();
+            }
+
+            FilesUtil.addFileToZipFile(classFilePath, oldjarFile.getAbsolutePath(), newJarFile.getAbsolutePath());
+            if (oldjarFile.delete()){
+                if (newJarFile.renameTo(oldjarFile)){
+                    return true;
+                }
+            }
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     *  将java file 放到jar文件中。
+     * @param javaFilePath
+     * @return
+     */
+    public static boolean addFileToJar(String javaFilePath, String jarPath){
+        // 1.第一步，编译
+        if (Util.isStrEmpty(javaFilePath)){
+            return false;
+        }
+
+        File javaFile = new File(javaFilePath);
+        if (!javaFile.exists()){
+            return false;
+        }
+
+        if (compileJavaFile(javaFilePath)){
+            // 第二步，将class放到jar中。
+            String classFileName = FilesUtil.getBaseProjectPath() + Constants.MONITOR_CLASS;
+            return addClassFileToJar(jarPath,classFileName);
+        }
+
+        return false;
     }
     /**
      *  获取项目所在根目录

@@ -37,4 +37,8 @@ public class Constants {
     public final static String SIGNPWD = "60621210";
     public final static String SIGNALIAS = "androidsign.keystore";
 
+    // 默认的工具类
+    public final static String MONITOR_CLASSNAME = "com.xdja.monitor.AppMonitor";
+    public final static String MONITOR_CLASS = "AppMonitor.class";
+
 }
