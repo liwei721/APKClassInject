@@ -3,10 +3,7 @@ package com.xdja.inject.transform;
 import com.googlecode.d2j.dex.Dex2jar;
 import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.setting.SettingHelper;
-import com.xdja.inject.util.Dex2jarUtil;
-import com.xdja.inject.util.FilesUtil;
-import com.xdja.inject.util.InjectUtil;
-import com.xdja.inject.util.Util;
+import com.xdja.inject.util.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,6 +48,8 @@ public class TransformManager {
                 transformListener.showError("配置中插桩代码开关是关闭的。");
                 return;
             }
+            // 配置日志是否可以打印
+            LogUtil.setQuiet(!setting.isShowLog());
 
             transformListener.start();
 
