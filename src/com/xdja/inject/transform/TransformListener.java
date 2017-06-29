@@ -11,6 +11,7 @@ public interface TransformListener {
      void deleteMeta(int i, String var);
      void dexToapk(int i, String var);
      void apkSign(int i , String var);
+     void jar2dex(int i, String var);
      void finish(String var);
      void showError(String errorMsg);
 }

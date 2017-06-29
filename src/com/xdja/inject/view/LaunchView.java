@@ -36,17 +36,115 @@ public class LaunchView extends JFrame implements ActionListener{
     private String mSignAlias = "";
 
     private TransformManager mTransforManager;
+    private TransformListener mListener;
+    private boolean isTaskRunning = false;
 
     public LaunchView(){
         this.setTitle(Constants.TITLE + "_" + Constants.VERSION);
         this.frame = new JPanel();
-        this.setBounds(400, 200, 600, 300);
+        this.setBounds(400, 200, 600, 400);
         add(frame);
         setResizable(false);
         setVisible(true);
         addActionListener();
         mTransforManager = new TransformManager();
-        mTransforManager.setTransformListener(transformListener);
+        initTransformListener();
+        mTransforManager.setTransformListener(mListener);
+    }
+
+    private void initTransformListener(){
+        mListener = new TransformListener() {
+            @Override
+            public void start() {
+                isTaskRunning = true;
+                refreshCommitBtnState(isTaskRunning);
+                updateTips("正在开始插桩任务！！");
+            }
+
+            @Override
+            public void upzipApk(int i, String path) {
+                updateTips("执行第 " + i + " 步：解压apk！！，解压之后路径：" + path);
+            }
+
+            @Override
+            public void dex2jar(int i, String path) {
+                updateTips("执行第 " + i + " 步：将dex转成jar！！");
+            }
+
+            @Override
+            public void deleteMeta(int i, String var) {
+                updateTips("执行第 " + i + " 步：删除apk中原有的签名信息！！");
+            }
+
+            @Override
+            public void dexToapk(int i, String var) {
+                updateTips("执行第 " + i + " 步：将插桩后的dex push到apk中！！");
+            }
+
+            @Override
+            public void apkSign(int i, String var) {
+                updateTips("执行第 " + i + " 步：对插桩后apk进行签名！！签名后的apk地址：" + var);
+            }
+
+            @Override
+            public void jar2dex(int i, String var) {
+                updateTips("执行第 " + i + " 步：将jar转成dex：" + var);
+            }
+
+            @Override
+            public void finish(String apkPath) {
+                isTaskRunning = true;
+                refreshCommitBtnState(isTaskRunning);
+                updateTips("插桩任务完成！！请在 ：" + apkPath + "查看");
+            }
+
+            @Override
+            public void showError(String errorMsg) {
+                isTaskRunning = false;
+                refreshCommitBtnState(isTaskRunning);
+
+                updateTips("运行出错了，错误信息是：" + errorMsg);
+            }
+
+        };
+    }
+
+    /**
+     *  用于更新提示信息
+     * @param msg
+     */
+    public void updateTips(String msg){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    if (tipsLabel != null){
+                        tipsLabel.setText(msg);
+                    }
+
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    /**
+     *  刷新正在执行任务时的状态
+     * @param isTrue
+     */
+    private void refreshCommitBtnState(boolean isTrue){
+        if (isTrue){
+            chooseBtn.setEnabled(false);
+            chooseSignBtn.setEnabled(false);
+            signAlias.setEnabled(false);
+            signPwdField.setEnabled(false);
+        }else {
+            chooseBtn.setEnabled(true);
+            chooseSignBtn.setEnabled(true);
+            signAlias.setEnabled(true);
+            signPwdField.setEnabled(true);
+        }
     }
     /**
      *  选择apk文件
@@ -89,24 +187,24 @@ public class LaunchView extends JFrame implements ActionListener{
         chooseSignBtn.addActionListener(this);
 
         // 创建输入签名密码和keyAlias的输入框
+        JLabel pwdLabel = new JLabel("APK签名文件密码:");
+        frame.add(pwdLabel);
+        pwdLabel.setBounds(10, 100, 150, 30);
+
+
         signPwdField = new JTextField("");
         frame.add(signPwdField);
-        Rectangle rect1 = new Rectangle(10, 100, 400, 30);
+        Rectangle rect1 = new Rectangle(180, 100, 400, 30);
         signPwdField.setBounds(rect1);
 
-        JLabel pwdLabel = new JLabel("请输入APK签名文件密码:");
-        frame.add(pwdLabel);
-        pwdLabel.setBounds(430, 100, 150, 30);
+        JLabel aliasLabel = new JLabel("apk签名文件keyAlias：");
+        frame.add(aliasLabel);
+        aliasLabel.setBounds(10, 150, 150, 30);
 
         signAlias = new JTextField();
         frame.add(signAlias);
-        Rectangle rect2 = new Rectangle(10, 150, 400, 30);
+        Rectangle rect2 = new Rectangle(180, 150, 400, 30);
         signAlias.setBounds(rect2);
-
-        JLabel aliasLabel = new JLabel("请输入apk签名文件keyAlias：");
-        frame.add(aliasLabel);
-        aliasLabel.setBounds(430, 150, 150, 30);
-
     }
 
 
@@ -115,10 +213,10 @@ public class LaunchView extends JFrame implements ActionListener{
      */
     private void createCommitButton(){
         // 创建一个按钮
-        JButton commitBtn = new JButton("选择apk签名文件");
+        JButton commitBtn = new JButton("开始插桩apk");
         frame.add(commitBtn);
         commitBtn.setActionCommand(COMMIT_CMD);
-        commitBtn.setBounds(200 ,200, 300, 30);
+        commitBtn.setBounds(150 ,250, 300, 30);
         commitBtn.addActionListener(this);
     }
 
@@ -126,9 +224,10 @@ public class LaunchView extends JFrame implements ActionListener{
      *  创建展示提示信息的文案
      */
     private void createTips(){
-        JLabel tipsLabel = new JLabel("任务还未开始");
+        tipsLabel = new JLabel("任务还未开始!!");
         frame.add(tipsLabel);
-        frame.setBounds(200, 300, 300, 30);
+        tipsLabel.setBounds(60, 300, 500, 30);
+        tipsLabel.setForeground(Color.red);
     }
 
 
@@ -174,64 +273,6 @@ public class LaunchView extends JFrame implements ActionListener{
         // 开始对APK进行处理
         mTransforManager.handleApk(mApkPath, mSignFilePath, mSignPwd, mSignAlias);
     }
-
-    private TransformListener transformListener = new TransformListener() {
-        @Override
-        public void start() {
-            if (tipsLabel != null){
-                tipsLabel.setText("正在开始插桩任务！！");
-            }
-        }
-
-        @Override
-        public void upzipApk(int i, String path) {
-            if (tipsLabel != null){
-                tipsLabel.setText("执行第 " + i + " 步：解压apk！！");
-            }
-        }
-
-        @Override
-        public void dex2jar(int i, String path) {
-            if (tipsLabel != null){
-                tipsLabel.setText("执行第 " + i + " 步：将dex转成jar！！");
-            }
-        }
-
-        @Override
-        public void deleteMeta(int i, String var) {
-            if (tipsLabel != null){
-                tipsLabel.setText("执行第 " + i + " 步：删除apk中原有的签名信息！！");
-            }
-        }
-
-        @Override
-        public void dexToapk(int i, String var) {
-            if (tipsLabel != null){
-                tipsLabel.setText("执行第 " + i + " 步：将插桩后的dex push到apk中！！");
-            }
-        }
-
-        @Override
-        public void apkSign(int i, String var) {
-            if (tipsLabel != null){
-                tipsLabel.setText("执行第 " + i + " 步：对插桩后apk进行签名！！");
-            }
-        }
-
-        @Override
-        public void finish(String apkPath) {
-            if (tipsLabel != null){
-                tipsLabel.setText("插桩任务完成！！请在 ：" + apkPath + "查看");
-            }
-        }
-
-        @Override
-        public void showError(String errorMsg) {
-            if (tipsLabel != null){
-                tipsLabel.setText("运行出错了，错误信息是：" + errorMsg);
-            }
-        }
-    };
 
     /**
      *  选择一个文件

@@ -13,14 +13,6 @@ import java.util.zip.ZipFile;
  * 工具类
  */
 public class Util {
-    private static final int BUFFER = 1024;
-    private static final String PROJECT_BASE_PATH = System.getProperty("user.dir");
-    private static final String DEX_TOOL_PATH = System.getProperty("user.dir") + "\\dex2jar\\";
-    private static final String DEX2JAR_TOOL_PATH = System.getProperty("user.dir") + "\\dex2jar\\dex2jar.bat";
-    private static final String JAR2DEX_TOOL_PATH = System.getProperty("user.dir") + "\\dex2jar\\jar2dex.bat";
-    private static final String REG_DEX2JAR = "-dex2jar";
-
-
     /**
      *  判断字符串是否是空的
      * @param str

@@ -60,10 +60,10 @@ public class Dex2jarUtil {
      * @param jarPathList
      * @return 返回jar的临时目录
      */
-    public static String  jar2Dex(List<String> jarPathList){
+    public static boolean  jar2Dex(List<String> jarPathList) throws IOException {
         if (Util.isListEmpty(jarPathList)){
-            Log.info("jar2Dex input jars path is null");
-            return "";
+            LogUtil.info("jar2Dex input jars path is null");
+            return false;
         }
 
         for (String jarPath : jarPathList){
@@ -73,19 +73,32 @@ public class Dex2jarUtil {
             }
 
             String dexName = jarName2DexName(jarFile.getName());
-            String rootPath = FilesUtil.getTempDirPath();
-            String outDexPath = rootPath + File.separator + "tempDex" + File.separator+ dexName;
+            String rootPath = FilesUtil.getBaseProjectPath();
+            String outDexPath = rootPath + File.separator+ dexName;
+            File outDexFile = new File(outDexPath);
+            if (!outDexFile.getParentFile().exists()){
+                boolean isSuc = outDexFile.getParentFile().mkdirs();
+                if (!isSuc){
+                    return false;
+                }
+            }
+
+            if (!outDexFile.exists()){
+                boolean isSuc = outDexFile.createNewFile();
+                if (!isSuc){
+                    return  false;
+                }
+            }
 
             String[] cmd = { "--dex", "--output=" + outDexPath, jarFile.getAbsolutePath() };
             try{
                 Main.main(cmd);
-                return outDexPath;
             }catch (Exception ex){
-                Log.info(" dexName = " + " handle failed");
+                LogUtil.info(" dexName = " + " handle failed");
             }
         }
 
-        return "";
+        return true;
     }
 
     /**
@@ -105,21 +118,25 @@ public class Dex2jarUtil {
      */
     public static boolean deleteMetaInfo(String unzipDir, String inputApkPath){
         try{
-            File metaInfoFile = new File(unzipDir + Constants.META_INFO);
+            File metaInfoFile = new File(unzipDir + File.separator + Constants.META_INFO);
             if (metaInfoFile.exists()){
                 File[] metaList = metaInfoFile.listFiles();
+                if (metaList == null || metaList.length < 1){
+                    return false;
+                }
+
                 String aaptCmd = FilesUtil.getAaptcmdPath();
                 String cmd = aaptCmd + " r "  + new File(inputApkPath).getAbsolutePath();
                 for (File metaFile : metaList){
                     // TODO: 2017/6/28 这里不加META-INFO,之前用命令行时貌似不需要加
-                    cmd = cmd + " "+metaFile.getName();
+                    cmd = cmd + " "+Constants.META_INFO + metaFile.getName();
                 }
 
                 return Util.execCmd(cmd, true);
             }
         }catch (Exception ex){
             ex.printStackTrace();
-            Log.info("deleteMetaInfo fail " + ex.getMessage());
+            LogUtil.info("deleteMetaInfo fail " + ex.getMessage());
         }
 
         return false;
@@ -143,23 +160,29 @@ public class Dex2jarUtil {
                 }
 
                 if (!Util.execCmd(rmCmd, true)){
-                    Log.info("addDexToAPK delete origin dex fail");
+                    LogUtil.info("addDexToAPK delete origin dex fail");
                     return false;
                 }
+            }
 
-                for (File dexFile : dexFiles){
+            File tempDexFolder = new File(FilesUtil.getBaseProjectPath());
+            if (tempDexFolder.exists()){
+                File[] tempDexFiles = tempDexFolder.listFiles();
+                if (tempDexFiles == null || tempDexFiles.length < 1) return false;
+
+                for (File dexFile : tempDexFiles){
                     if (dexFile.getName().endsWith(".dex")){
                         addCmd = addCmd + " " + dexFile.getName();
                     }
                 }
 
                 if (!Util.execCmd(addCmd, true)){
+                    LogUtil.info("addDexToAPK add dex to apk fail");
                     return false;
                 }
-
             }
         }catch (Exception ex){
-            Log.info("addDexToApk fail " + ex.getMessage());
+            LogUtil.info("addDexToApk fail " + ex.getMessage());
         }
         return true;
     }
@@ -177,12 +200,12 @@ public class Dex2jarUtil {
             File signFile = new File(signFilePath);
             File apkFile = new File(apkPath);
             if (!apkFile.exists()){
-                Log.info("签名apk时，原apk不存在，请检查");
+                LogUtil.info("签名apk时，原apk不存在，请检查");
                 return "";
             }
 
             if (!signFile.exists()){
-                Log.info("签名文件不存在，将使用默认的签名配置");
+                LogUtil.info("签名文件不存在，将使用默认的签名配置");
                 signFilePath = new File(FilesUtil.getBaseProjectPath() + File.separator + "config" + File.separator + Constants.signFileName).getAbsolutePath();
                 pwd = Constants.SIGNPWD;
                 signName = Constants.SIGNALIAS;
@@ -190,7 +213,7 @@ public class Dex2jarUtil {
 
             //构造签名之后的apk名字
             String origAPkPath = apkFile.getAbsolutePath();
-            String singedapk = apkFile.getAbsolutePath().substring(origAPkPath.indexOf(".apk")) + "_inject_sign.apk";
+            String singedapk = apkFile.getAbsolutePath().substring(0, origAPkPath.indexOf(".apk")) + "_inject_sign.apk";
 
             StringBuilder signCmd = new StringBuilder("jarsigner.exe");
             signCmd.append(" -verbose -keystore ");
@@ -203,14 +226,54 @@ public class Dex2jarUtil {
             signCmd.append(signName + " ");
             signCmd.append("-digestalg SHA1 -sigalg MD5withRSA");
 
-            Util.execCmd(signCmd.toString(), false);
+            boolean isSuc = Util.execCmd(signCmd.toString(), false);
+            if (!isSuc){
+                return "";
+            }
+
+
             return singedapk;
         }catch (Exception ex){
             ex.printStackTrace();
-            Log.info("签名apk失败 " + ex.getMessage());
+            LogUtil.info("签名apk失败 " + ex.getMessage());
         }
 
         return "";
     }
+    /**
+     *  将dex转成jar
+     * @param zipFolder  解压apk之后的folder
+     * @return  生成的dex路径
+     */
+    public static List<String> dex2jarImpl(String zipFolder){
+        List<String> jarPaths = new ArrayList<>(3);
+        if (Util.isStrEmpty(zipFolder)){
+            return jarPaths;
+        }
 
+        File apkunZipFile = new File(zipFolder);
+        if (!apkunZipFile.exists()){
+            return jarPaths;
+        }
+
+        /**
+         *  过滤出所有以dex结尾的文件
+         */
+        File[] dexFiles = apkunZipFile.listFiles(pathname -> {
+            if (pathname.isFile() && pathname.getName().endsWith(".dex")){
+                return true;
+            }
+            return false;
+        });
+
+        if (dexFiles == null || dexFiles.length < 1){
+            return jarPaths;
+        }
+        /**
+         * 遍历dexFile，将dex转成jar
+         */
+        jarPaths = Dex2jarUtil.dexs2jars(dexFiles);
+
+        return jarPaths;
+    }
 }

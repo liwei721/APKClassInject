@@ -2,7 +2,7 @@ package com.xdja.inject.transform;
 
 import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.util.InjectUtil;
-import com.xdja.inject.util.Log;
+import com.xdja.inject.util.LogUtil;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 
@@ -28,25 +28,25 @@ public class MethodFilterClassVisitor extends ClassVisitor implements Opcodes{
 
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-        Log.logEach("* visit *", Log.accCode2String(access), name, signature, superName, interfaces);
+        LogUtil.logEach("* visit *", LogUtil.accCode2String(access), name, signature, superName, interfaces);
         super.visit(version, access, name, signature, superName, interfaces);
     }
 
     @Override
     public void visitSource(String source, String debug) {
-        Log.logEach("* visitSource *", source, debug);
+        LogUtil.logEach("* visitSource *", source, debug);
         super.visitSource(source, debug);
     }
 
     @Override
     public void visitOuterClass(String owner, String name, String desc) {
-        Log.logEach("* visitOuterClass *", owner, name, desc);
+        LogUtil.logEach("* visitOuterClass *", owner, name, desc);
         super.visitOuterClass(owner, name, desc);
     }
 
     @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
-        Log.logEach("* visitAnnotation *", desc, visible);
+        LogUtil.logEach("* visitAnnotation *", desc, visible);
         return super.visitAnnotation(desc, visible);
     }
 
@@ -57,25 +57,25 @@ public class MethodFilterClassVisitor extends ClassVisitor implements Opcodes{
 
     @Override
     public void visitAttribute(Attribute attr) {
-        Log.logEach("* visitAttribute *", attr, attr.type);
+        LogUtil.logEach("* visitAttribute *", attr, attr.type);
         super.visitAttribute(attr);
     }
 
     @Override
     public void visitInnerClass(String name, String outerName, String innerName, int access) {
-        Log.logEach("* visitInnerClass *", name, outerName, innerName, Log.accCode2String(access));
+        LogUtil.logEach("* visitInnerClass *", name, outerName, innerName, LogUtil.accCode2String(access));
         super.visitInnerClass(name, outerName, innerName, access);
     }
 
     @Override
     public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
-        Log.logEach("* visitField *", Log.accCode2String(access), name, desc, signature, value);
+        LogUtil.logEach("* visitField *", LogUtil.accCode2String(access), name, desc, signature, value);
         return super.visitField(access, name, desc, signature, value);
     }
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-        Log.logEach("* visitMethod *");
+        LogUtil.logEach("* visitMethod *");
         MethodVisitor myMv = null;
         for (SettingEntity.InjectSettingsBean settingsBean : settingsBeans){
             String className = settingsBean.getClassName();
@@ -104,6 +104,6 @@ public class MethodFilterClassVisitor extends ClassVisitor implements Opcodes{
     @Override
     public void visitEnd() {
         super.visitEnd();
-        Log.logEach("* visitEnd *");
+        LogUtil.logEach("* visitEnd *");
     }
 }
