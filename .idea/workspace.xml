@@ -2,438 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f167fc1-05ea-44f5-bbb9-637c46015457" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/AppMonitor.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/META-INF/CERT.RSA" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/META-INF/CERT.SF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/classes.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_fade_in.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_fade_out.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_grow_fade_in_from_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_popup_enter.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_popup_exit.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_shrink_fade_out_from_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_slide_in_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_slide_in_top.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_slide_out_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/anim/abc_slide_out_top.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v11/abc_background_cache_hint_selector_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v11/abc_background_cache_hint_selector_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_btn_colored_borderless_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_btn_colored_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_color_highlight_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_btn_checkable.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_edittext.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_seek_thumb.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_spinner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_switch_thumb.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color-v23/abc_tint_switch_track.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_btn_colored_borderless_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_btn_colored_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_hint_foreground_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_hint_foreground_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_primary_text_disable_only_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_primary_text_disable_only_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_primary_text_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_primary_text_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_search_url_text.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_secondary_text_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_secondary_text_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_btn_checkable.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_edittext.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_seek_thumb.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_spinner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_switch_thumb.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/abc_tint_switch_track.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/switch_thumb_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/color/switch_thumb_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_star_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_star_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_star_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_star_half_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_ic_star_half_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_text_select_handle_left_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_text_select_handle_left_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_text_select_handle_middle_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_text_select_handle_middle_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_text_select_handle_right_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_text_select_handle_right_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/notification_bg_low_normal.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/notification_bg_normal.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-hdpi-v17/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-mdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-mdpi-v17/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-mdpi-v17/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xhdpi-v17/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-ldrtl-xxxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_star_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_star_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_star_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_star_half_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_star_half_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_ic_star_half_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_scrubber_control_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_scrubber_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_text_select_handle_left_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_text_select_handle_left_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_text_select_handle_middle_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_text_select_handle_middle_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_text_select_handle_right_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_text_select_handle_right_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/notification_bg_low_normal.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/notification_bg_low_pressed.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/notification_bg_normal.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/abc_action_bar_item_background_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/abc_btn_colored_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/abc_edit_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/abc_ratingbar_indicator_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/abc_ratingbar_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/abc_ratingbar_small_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v21/notification_action_background.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-v23/abc_control_background_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_star_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_star_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_star_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_star_half_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_star_half_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_ic_star_half_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_text_select_handle_left_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_text_select_handle_left_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_text_select_handle_middle_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_text_select_handle_middle_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_text_select_handle_right_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_text_select_handle_right_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/notification_bg_normal.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_star_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_star_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_star_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_star_half_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_star_half_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_ic_star_half_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_star_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_star_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_star_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_star_half_black_16dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_star_half_black_36dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_ic_star_half_black_48dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_text_select_handle_left_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_text_select_handle_left_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_btn_borderless_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_btn_check_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_btn_colored_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_btn_default_mtrl_shape.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_btn_radio_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_cab_background_internal_bg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_cab_background_top_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_dialog_material_background.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_edit_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_ab_back_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_arrow_drop_right_black_24dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_clear_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_go_search_api_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_menu_overflow_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_search_api_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ic_voice_search_api_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_item_background_holo_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_item_background_holo_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_list_selector_background_transition_holo_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_list_selector_background_transition_holo_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_list_selector_holo_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_list_selector_holo_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ratingbar_indicator_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ratingbar_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_ratingbar_small_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_seekbar_thumb_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_seekbar_tick_mark_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_seekbar_track_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_spinner_textfield_background_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_switch_thumb_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_tab_indicator_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_text_cursor_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_textfield_search_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/abc_vector_test.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/notification_bg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/notification_bg_low.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/notification_icon_background.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/drawable/notification_tile_bg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v11/notification_media_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v11/notification_media_cancel_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v11/notification_template_big_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v11/notification_template_big_media_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v11/notification_template_big_media_narrow.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v11/notification_template_big_media_narrow_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v16/notification_template_custom_big.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_action_mode_close_item_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_alert_dialog_button_bar_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_alert_dialog_title_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_dialog_title_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_popup_menu_header_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_popup_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_search_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/abc_select_dialog_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_action_tombstone.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_big_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_big_media_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_big_media_narrow.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_big_media_narrow_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_custom_big.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_lines_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/notification_template_media_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/select_dialog_multichoice_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v17/select_dialog_singlechoice_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v21/abc_screen_toolbar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v21/notification_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v21/notification_action_tombstone.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v21/notification_template_custom_big.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v21/notification_template_icon_group.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout-v22/abc_alert_dialog_button_bar_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_bar_title_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_bar_up_container.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_bar_view_list_nav_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_menu_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_mode_bar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_action_mode_close_item_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_activity_chooser_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_activity_chooser_view_list_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_alert_dialog_button_bar_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_alert_dialog_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_alert_dialog_title_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_dialog_title_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_expanded_menu_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_list_menu_item_checkbox.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_list_menu_item_icon.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_list_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_list_menu_item_radio.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_popup_menu_header_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_popup_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_screen_content_include.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_screen_simple.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_screen_simple_overlay_action_mode.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_screen_toolbar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_search_dropdown_item_icons_2line.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_search_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/abc_select_dialog_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_action_tombstone.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_custom_big.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_icon_group.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_lines_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_media_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_part_chronometer.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/notification_template_part_time.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/select_dialog_item_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/select_dialog_multichoice_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/select_dialog_singlechoice_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/layout/support_simple_spinner_dropdown_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-hdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-hdpi-v4/ic_launcher_round.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-mdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-mdpi-v4/ic_launcher_round.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-xhdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-xhdpi-v4/ic_launcher_round.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-xxhdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-xxhdpi-v4/ic_launcher_round.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-xxxhdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/res/mipmap-xxxhdpi-v4/ic_launcher_round.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/app-debug/resources.arsc" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/googlecode/d2j/dex/Dex2Asm.java" afterPath="$PROJECT_DIR$/src/com/googlecode/d2j/dex/Dex2Asm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/Constants.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/transform/MethodFilterClassVisitor.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/transform/MethodFilterClassVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/util/ASMUtils.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/util/ASMUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/Test.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xdja/inject/util/InjectUtil.java" afterPath="$PROJECT_DIR$/src/com/xdja/inject/util/InjectUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -460,11 +30,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilesUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FilesUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="344" column="21" lean-forward="false" selection-start-line="344" selection-start-column="21" selection-end-line="344" selection-end-column="21" />
+            <state relative-caret-position="517">
+              <caret line="359" column="75" lean-forward="false" selection-start-line="359" selection-start-column="75" selection-end-line="359" selection-end-column="75" />
+              <folding>
+                <element signature="e#9792#9793#0" expanded="true" />
+                <element signature="e#9845#9846#0" expanded="true" />
+                <element signature="e#9939#9940#0" expanded="true" />
+                <element signature="e#10022#10023#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="99" lean-forward="false" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -522,16 +107,6 @@
                 <element signature="e#291#292#0" expanded="false" />
                 <element signature="e#349#350#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InjectSetting.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/InjectSetting.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-63">
-              <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -615,7 +190,6 @@
         <option value="$PROJECT_DIR$/ReadMe.md" />
         <option value="$PROJECT_DIR$/src/com/googlecode/d2j/dex/ExDex2Asm.java" />
         <option value="$PROJECT_DIR$/src/com/android/dx/command/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/xdja/inject/Test.java" />
         <option value="$PROJECT_DIR$/src/com/googlecode/dex2jar/tools/Dex2jarCmd.java" />
         <option value="$PROJECT_DIR$/src/com/googlecode/d2j/dex/Dex2jar.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/Dex2jarUtil.java" />
@@ -632,6 +206,7 @@
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/Util.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/Constants.java" />
         <option value="$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/xdja/inject/Test.java" />
       </list>
     </option>
   </component>
@@ -707,36 +282,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="inject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ApkInjectTools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ApkInjectTools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xdja" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1320,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/googlecode/d2j/dex/ClassVisitorFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1599,8 +1137,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/util/FilesUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="344" column="21" lean-forward="false" selection-start-line="344" selection-start-column="21" selection-end-line="344" selection-end-column="21" />
+        <state relative-caret-position="517">
+          <caret line="359" column="75" lean-forward="false" selection-start-line="359" selection-start-column="75" selection-end-line="359" selection-end-column="75" />
+          <folding>
+            <element signature="e#9792#9793#0" expanded="true" />
+            <element signature="e#9845#9846#0" expanded="true" />
+            <element signature="e#9939#9940#0" expanded="true" />
+            <element signature="e#10022#10023#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xdja/inject/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="99" lean-forward="false" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
           <folding />
         </state>
       </provider>

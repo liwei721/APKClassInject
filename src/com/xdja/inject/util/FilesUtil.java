@@ -224,7 +224,7 @@ public class FilesUtil {
      * @param zipFileName
      * @param newZipFileName
      */
-    public static void addFileToZipFile(String fileName, String zipFileName, String newZipFileName)
+    private static void addFileToZipFile(String fileName, String zipFileName, String newZipFileName)
     {
         try {
             FileInputStream fis = new FileInputStream(fileName);
@@ -264,7 +264,7 @@ public class FilesUtil {
      * @param output
      * @throws IOException
      */
-    public static void copy(InputStream input, OutputStream output) throws IOException
+    private static void copy(InputStream input, OutputStream output) throws IOException
     {
         byte[] BUFFER = new byte[4194304];
         int bytesRead;
@@ -295,7 +295,7 @@ public class FilesUtil {
      * @param classFilePath
      * @return
      */
-    public static boolean addClassFileToJar(String JarPath, String classFilePath){
+    private static boolean addClassFileToJar(String JarPath, String classFilePath){
         try{
             File oldjarFile = new File(JarPath);
             if (!oldjarFile.exists()){
@@ -350,6 +350,14 @@ public class FilesUtil {
      */
     public static String getBaseProjectPath(){
         return System.getProperty("user.dir");
+    }
+
+    /**
+     *  获取项目的资源目录
+     * @return
+     */
+    public static String getResourcePath(){
+        return System.getProperty("user.dir") + File.separator + "resource";
     }
 
     public static String getTempDirPath(){
