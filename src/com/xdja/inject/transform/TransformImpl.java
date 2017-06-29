@@ -129,12 +129,4 @@ public class TransformImpl {
         cr.accept(methodFilterAdapter, 0);
         return classWriter.toByteArray();
     }
-
-    /**
-     * 删除不用的目录
-     * @param tempDir
-     */
-    public static boolean deleteTempDir(String tempDir){
-        return FilesUtil.deleteDirectory(tempDir);
-    }
 }

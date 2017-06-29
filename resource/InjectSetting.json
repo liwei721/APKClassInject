@@ -4,7 +4,7 @@
   "InjectSettings":[
     {
       "className" : "*Activity",
-      "classExclude":["com.android.*"],
+      "classExclude":["com.android.*", "android.support.*"],
       "modifyMethods": "",
       "methodName": "onCreate",
       "methodDesc": "",
@@ -12,7 +12,8 @@
       "InjectClass": "com.xdja.inject.MontiorTrace",
       "InjectMethod": "log",
       "InjectMethodDesc" : "()V",
-      "InjectMethodParams" :[]
+      "InjectMethodParams" :[],
+      "InjectField":""
     }
   ]
 }

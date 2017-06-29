@@ -168,6 +168,10 @@ public class FilesUtil {
             return false;
         }
 
+        File targetFile = new File(targetDir);
+        if (targetFile.exists() && targetFile.isFile()){
+            targetDir = targetFile.getParent();
+        }
         try {
             String cmd = "explorer " + targetDir;
             Util.execCmd(cmd, false);
@@ -176,6 +180,39 @@ public class FilesUtil {
             ex.printStackTrace();
         }
         return false;
+    }
+
+
+    /**
+     * 删除不用的目录
+     * @param tempDir
+     */
+    public static boolean deleteTempDir(String tempDir){
+        boolean isSuc = false;
+        try{
+            // 删除temp目录
+            isSuc =  deleteDirectory(tempDir);
+            // 删除根目录下面的 classes.dex
+            File[] dexFiles = new File(FilesUtil.getBaseProjectPath()).listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File pathname) {
+                    if (pathname.isFile() && pathname.getName().endsWith(".dex")){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            if (dexFiles != null && dexFiles.length > 0){
+                for (File dexFile : dexFiles){
+                    deleteFile(dexFile.getName());
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return isSuc;
     }
     /**
      *  获取项目所在根目录

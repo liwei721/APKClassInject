@@ -15,6 +15,10 @@ import java.util.regex.Pattern;
 public class InjectUtil {
     private static Map<String ,Integer> targetClasses = new HashMap<>();
     private static Map<String, List<String>> classExcluds = new HashMap<>();
+    private static Map<String, Integer> targetMethods = new HashMap<>();
+    private static Map<String, List<String>> methodExcluds = new HashMap<>();
+
+    public static SettingEntity mSettingentity = null;
     /**
      *  判断method是否符合正则表达式
      * @param pattern
@@ -265,6 +269,47 @@ public class InjectUtil {
 
     }
 
+    /**
+     *  判断对应的method是否需要修改
+     * @param methodName
+     * @return
+     */
+    public static String shouldModifyMethod(String methodName){
+        if (Util.isStrEmpty(methodName)) return "";
+        for (Map.Entry<String, Integer> entry : targetMethods.entrySet()){
+            // matchType 是匹配的类型：正则、通配符、相等
+            int matchType = entry.getValue();
+            String key = entry.getKey();
+            List<String> methodExcs = methodExcluds.get(key);
+            for (String methodexclud : methodExcs){
+                if (InjectUtil.isPatternMatch(methodexclud, methodName)){
+                    return "";
+                }
+            }
+            switch (matchType){
+                case Constants.MT_FULL:
+                    if (methodName.equals(key)){
+                        return key;
+                    }
+                case Constants.MT_REGEX:
+                    if (InjectUtil.regMatch(key, methodName)){
+                        return key;
+                    }
+                    break;
+                case Constants.MT_WILDCARD:
+                    if (InjectUtil.wildcardMatchPro(key, methodName)){
+                        return key;
+                    }
+                    break;
+                default:
+                    return "";
+
+            }
+
+        }
+
+        return "";
+    }
 
     /***
      * 将要匹配的class及匹配类型存起来，方便后面调用
@@ -272,6 +317,7 @@ public class InjectUtil {
      */
     public static void initTargetClasses(SettingEntity entity){
         if (entity == null) return;
+        mSettingentity = entity;
         targetClasses.clear();
         classExcluds.clear();
         for (SettingEntity.InjectSettingsBean settingsBean : entity.getInjectSettings()){
@@ -281,6 +327,13 @@ public class InjectUtil {
 
             // 将className，对应的classExclude放到map中
             classExcluds.put(settingsBean.getClassName(), settingsBean.getClassExclude());
+
+            // 对method进行处理
+            int methodType = InjectUtil.getMatchTypeByValue(settingsBean.getMethodName());
+            targetMethods.put(settingsBean.getMethodName(), type);
+
+            // 将method过滤项放到map中
+            methodExcluds.put(settingsBean.getMethodName(), (List<String>) settingsBean.getMethodExclude());
         }
     }
 }

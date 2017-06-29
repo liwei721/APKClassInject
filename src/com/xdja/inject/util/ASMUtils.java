@@ -29,7 +29,7 @@ public class ASMUtils {
      * @param msg
      */
     public static void addSystemOut(MethodVisitor mv, String msg){
-        mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream");
+        mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
         mv.visitLdcInsn(msg);
         mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "Ljava/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
     }

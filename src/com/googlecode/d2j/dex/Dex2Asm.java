@@ -1,8 +1,10 @@
 package com.googlecode.d2j.dex;
 
+import java.io.File;
 import java.util.*;
 
 import com.googlecode.d2j.converter.Dex2IRConverter;
+import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.util.ASMUtils;
 import com.xdja.inject.util.InjectUtil;
 import com.xdja.inject.util.Util;
@@ -538,7 +540,7 @@ public class Dex2Asm {
             if (methodNode.codeNode != null) {
                 mv.visitCode();
                 // 注入自己的代码。
-                handleInjectClass(classNode, mv, cv);
+                handleInjectClass(classNode, mv, cv, methodNode.method.getName());
                 convertCode(methodNode, mv);
             }
         }
@@ -554,16 +556,42 @@ public class Dex2Asm {
      * @param mv
      * @param cv
      */
-    private void handleInjectClass(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv){
-        String key = InjectUtil.shouldModifyClass(classNode.className);
+    private void handleInjectClass(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
+        String key = InjectUtil.shouldModifyClass(formatClassName(classNode.className));
         if (Util.isStrEmpty(key)){
+            return;
+        }
+
+        String methodKey = InjectUtil.shouldModifyMethod(methodName);
+        if (Util.isStrEmpty(methodKey)){
             return;
         }
 
         ASMUtils.addSystemOut(mv, "Hello");
     }
 
+    /**
+     * 将className最后面的；去掉
+     * @return
+     */
+    private String formatClassName(String className){
+        // 去掉最前面的L
+        if (className.startsWith("L")){
+            className = className.substring(1);
+        }
 
+        // 将/变成.
+        if (className.contains("/")){
+            className = className.replace("/", ".");
+        }
+
+        if (className.endsWith(";")){
+            className = className.substring(0, className.indexOf(";"));
+            return className;
+        }
+
+        return className;
+    }
 
     public IrMethod dex2ir(DexMethodNode methodNode) {
         return new Dex2IRConverter()

@@ -5,8 +5,10 @@ import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.setting.SettingHelper;
 import com.xdja.inject.util.Dex2jarUtil;
 import com.xdja.inject.util.FilesUtil;
+import com.xdja.inject.util.InjectUtil;
 import com.xdja.inject.util.Util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -73,24 +75,25 @@ public class TransformManager {
             boolean isSuc2 = Dex2jarUtil.jar2Dex(jars);
             transformListener.jar2dex(3, apkPath);
 
-            if (isSuc2) {
+            if (!isSuc2) {
                 transformListener.showError("jar 转成 dex 失败了");
                 return;
             }
-            // 如果成功
-            // 5. 删除apk中原来的签名文件
-            transformListener.deleteMeta(4, apkPath);
-            boolean isSuc = Dex2jarUtil.deleteMetaInfo(tempDir, apkPath);
-            if (!isSuc) {
-                transformListener.showError("删除原apk中的meta-info 失败了");
-                return;
-            }
 
-            // 6. 将上面的dex放到apk中
-            transformListener.dexToapk(5, apkPath);
+            // 5. 将上面的dex放到apk中
+            transformListener.dexToapk(4, apkPath);
             boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, tempDir);
             if (!isSuc1) {
                 transformListener.showError("将dex放到apk中失败了");
+                return;
+            }
+
+            // 如果成功
+            // 6. 删除apk中原来的签名文件
+            transformListener.deleteMeta(5, apkPath);
+            boolean isSuc = Dex2jarUtil.deleteMetaInfo(tempDir, apkPath);
+            if (!isSuc) {
+                transformListener.showError("删除原apk中的meta-info 失败了");
                 return;
             }
 
@@ -103,7 +106,7 @@ public class TransformManager {
             }
 
             // 8. 删除temp目录
-            boolean suc = TransformImpl.deleteTempDir(tempDir);
+            boolean suc = FilesUtil.deleteTempDir(FilesUtil.getTempDirPath());
             if (!suc){
                 transformListener.showError("删除临时目录失败了");
                 return;
@@ -131,6 +134,7 @@ public class TransformManager {
     }
 
     public static void main(String[] args){
-        FilesUtil.deleteDirectory(FilesUtil.getTempDirPath());
+//        FilesUtil.deleteTempDir(FilesUtil.getTempDirPath());
+        Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath() + File.separator + "app-debug");
     }
 }
