@@ -70,6 +70,13 @@ public class TransformManager {
                 return;
             }
 
+            // 3.1 将工具类写到jar中
+            boolean addFileSuc = FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", tempDir + File.separator + "classes.jar");
+            if (!addFileSuc){
+                transformListener.showError("将工具类AppMonitor添加到jar中");
+                return;
+            }
+
             // 4. 将jar转成dex，使用dx工具。
             boolean isSuc2 = Dex2jarUtil.jar2Dex(jars);
             transformListener.jar2dex(3, apkPath);
