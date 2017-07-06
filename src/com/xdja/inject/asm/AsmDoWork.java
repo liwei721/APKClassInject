@@ -20,9 +20,18 @@ public class AsmDoWork {
      * @param mv
      *
      */
-    public static void monitorPageStart(MethodVisitor mv, String className){
+    public static void monitorPageStart(MethodVisitor mv){
+        mv.visitMethodInsn(INVOKESTATIC, "com/xdja/monitor/AppMonitor", "monitorPageStart", "()V", false);
+    }
+
+    /**
+     *  标记页面加载结束
+     * @param mv
+     * @param className  这里的className是Lcom/example/asus/myapplication/MainActivity;这样格式的。
+     */
+    public static void monitorPageLoaded(MethodVisitor mv, String className){
         mv.visitLdcInsn(Type.getType(className));
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getSimpleName", "()Ljava/lang/String;", false);
-        mv.visitMethodInsn(INVOKESTATIC, "com/xdja/monitor/AppMonitor", "monitorPageStart", "(Ljava/lang/String;)V", false);
+        mv.visitMethodInsn(INVOKESTATIC, "com/xdja/monitor/AppMonitor", "monitorPageLoaded", "(Ljava/lang/String;)V", false);
     }
 }

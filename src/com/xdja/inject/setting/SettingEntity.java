@@ -17,6 +17,16 @@ public class SettingEntity {
 
     private boolean isInject;
     private boolean showLog;
+    private boolean useSetting;
+
+    public boolean isUseSetting() {
+        return useSetting;
+    }
+
+    public void setUseSetting(boolean useSetting) {
+        this.useSetting = useSetting;
+    }
+
     private List<InjectSettingsBean> InjectSettings;
 
     public boolean isIsInject() {

@@ -315,6 +315,14 @@ public class SettingHelper {
         return null;
     }
 
+    /**
+     *  返回是否使用配置的信息
+     * @return
+     */
+    public boolean isUseSetting(){
+        return mEntity.isUseSetting();
+    }
+
 
     public static void main(String[] args) {
 

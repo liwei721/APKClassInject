@@ -10,6 +10,7 @@ import com.xdja.inject.asm.AsmDoWork;
 import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.setting.SettingHelper;
 import com.xdja.inject.asm.ASMUtils;
+import com.xdja.inject.util.InjectUtil;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 import org.objectweb.asm.Type;
@@ -575,13 +576,26 @@ public class Dex2Asm {
             if (methodNode.codeNode != null) {
                 mv.visitCode();
                 // 在方法中注入自己的代码。
-                handleInjectMethod(classNode, mv, cv, methodNode.method.getName());
+                if (SettingHelper.getInstance().isUseSetting()){
+                    handleInjectMethod(classNode, mv, cv, methodNode.method.getName());
+                }else {
+                    handlePerformanceInject(classNode, mv, cv, methodNode.method.getName());
+                }
+
                 convertCode(methodNode, mv);
             }
         }
 
         mv.visitEnd();
 
+    }
+
+    /**
+     *  处理插入性能数据的点
+     */
+    private void handlePerformanceInject(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
+        // 插入kpi数据点
+        handleKpiInject(classNode, mv, cv, methodName);
     }
 
     /**
@@ -622,14 +636,35 @@ public class Dex2Asm {
         }
 
         for (InjectMethodBean.InjectContentBean contentBean: contentBeans){
-            try {
-                java.lang.reflect.Method  excMethod = Class.forName(pathToClassName(classNode.className)).getDeclaredMethod();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            AsmDoWork.monitorPageStart(mv, classNode.className);
+            ASMUtils.addStaticMethodToMethod(mv, contentBean.getInjectMethodName(), contentBean.getInjectMethodDesc(), classNode.className);
         }
     }
+
+    /**
+     *  插入kpi相关的代码
+     * @param classNode
+     * @param mv
+     * @param cv
+     * @param methodName
+     */
+    private void handleKpiInject(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
+        String className = pathToClassName(classNode.className);
+        boolean isShoudInject = InjectUtil.isPatternMatch("*Activity", className);
+        if (isShoudInject && (!className.startsWith("com.android.") || !className.startsWith("android.support."))){
+            // 判断方法名称
+            if (methodName.endsWith("onCreate")){
+                AsmDoWork.monitorPageStart(mv);
+            }
+        }
+
+        // 将结束的事件插入到Activity中的onWindowFocusChanged方法。
+        if (className.equals("android.app.Activity")){
+            if (methodName.endsWith("onWindowFocusChanged")){
+                AsmDoWork.monitorPageLoaded(mv,classNode.className);
+            }
+        }
+    }
+
 
     /**
      * 将className转成path

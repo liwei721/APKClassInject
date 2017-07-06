@@ -1,6 +1,7 @@
 {
   "isInject": true,
   "showLog": true,
+  "useSetting":false,
   "InjectSettings": [
     {
       "className": "*Activity",
@@ -25,7 +26,7 @@
       ]
     },
     {
-      "className": "android.app.Activity|android.support.v7.app.AppCompatActivity",
+      "className": "android.app.Activity",
       "InjectMethod": [
         {
           "methodName": "onWindowFocusChanged",
