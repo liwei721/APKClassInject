@@ -188,13 +188,12 @@ public class FilesUtil {
 
     /**
      * 删除不用的目录
-     * @param tempDir
      */
-    public static boolean deleteTempDir(String tempDir){
+    public static boolean deleteTempDir(){
         boolean isSuc = false;
         try{
             // 删除temp目录
-            isSuc =  deleteDirectory(tempDir);
+            isSuc =  deleteDirectory(FilesUtil.getTempDirPath());
             // 删除根目录下面的 classes.dex
             File[] dexFiles = new File(FilesUtil.getBaseProjectPath()).listFiles(new FileFilter() {
                 @Override
@@ -208,7 +207,24 @@ public class FilesUtil {
 
             if (dexFiles != null && dexFiles.length > 0){
                 for (File dexFile : dexFiles){
-                    deleteFile(dexFile.getName());
+                    deleteFile(dexFile.getAbsolutePath());
+                }
+            }
+
+            // 删除resource下面的class文件
+            File[] classFiles = new File(FilesUtil.getResourcePath()).listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File pathname) {
+                    if (pathname.isFile() && pathname.getName().equals(".class")){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            if (classFiles != null && classFiles.length > 0){
+                for (File classFile : classFiles){
+                    deleteFile(classFile.getAbsolutePath());
                 }
             }
         }catch (Exception ex){
@@ -226,6 +242,8 @@ public class FilesUtil {
      */
     private static void addFileToZipFile(String fileName, String zipFileName, String newZipFileName)
     {
+        ZipFile war = null;
+        ZipOutputStream append = null;
         try {
             FileInputStream fis = new FileInputStream(fileName);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -235,8 +253,8 @@ public class FilesUtil {
                 bos.write(buffer, 0, len);
             }
 
-            ZipFile war = new ZipFile(zipFileName);
-            ZipOutputStream append = new ZipOutputStream(new FileOutputStream(newZipFileName));
+            war = new ZipFile(zipFileName);
+            append = new ZipOutputStream(new FileOutputStream(newZipFileName));
 
             Enumeration entries = war.entries();
             while (entries.hasMoreElements()) {
@@ -255,6 +273,22 @@ public class FilesUtil {
             war.close();
             append.close();
         } catch (Exception localException) {
+        } finally {
+            if (war != null){
+                try {
+                    war.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (append != null){
+                try {
+                    append.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -372,5 +406,13 @@ public class FilesUtil {
 
     public static String getAndroidJarPath(){
         return getBaseProjectPath() + File.separator + "tools" + File.separator + "android.jar";
+    }
+
+    /**
+     *  获取配置的路径
+     * @return
+     */
+    public static String getConfigPath(){
+        return getBaseProjectPath() + File.separator + "config" ;
     }
 }

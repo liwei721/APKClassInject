@@ -271,7 +271,7 @@ public class LaunchView extends JFrame implements ActionListener{
         }
 
         // 开始对APK进行处理
-        mTransforManager.handleApk(mApkPath, mSignFilePath, mSignPwd, mSignAlias);
+        mTransforManager.injectApk(mApkPath, mSignFilePath, mSignPwd, mSignAlias);
     }
 
     /**

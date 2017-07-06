@@ -25,33 +25,17 @@ public class TransformManager {
      * @param signFilePath
      * @param signPwd
      */
-    public void handleApk(String apkPath, String signFilePath, String signPwd, String signAlias) {
+    private void handleApk(String apkPath, String signFilePath, String signPwd, String signAlias) {
         try {
             // 如果没有输入apkpath，就返回
             if (Util.isStrEmpty(apkPath)) return;
-            // 1. 获取配置的注入属性
-            setting = SettingHelper.getSetting();
-
-            // 如果没有配置文件，表示不进行注入操作，就什么都不做。
-            if (setting == null) {
-                transformListener.showError("没有获取到对应的配置文件");
-                return;
-            }
-            // 如果没有配置需要注入的类
-            if (Util.isListEmpty(setting.getInjectSettings())) {
-                transformListener.showError("没有配置往哪里插入代码");
-                return;
-            }
-
-            // 如果配置不执行注入，则啥都不做。
-            if (!setting.isIsInject()) {
-                transformListener.showError("配置中插桩代码开关是关闭的。");
-                return;
-            }
-            // 配置日志是否可以打印
-            LogUtil.setQuiet(!setting.isShowLog());
-
             transformListener.start();
+            // 1. 判断配置是否正确
+            String result = SettingHelper.getInstance().isSettingEnable();
+            if (!"".equals(result)){
+                transformListener.showError(result);
+                return;
+            }
 
             // 2. 解压apk到temp目录
             transformListener.upzipApk(1, apkPath);
@@ -59,6 +43,7 @@ public class TransformManager {
             // 如果临时目录为null，可能解压没有成功，直接返回。
             if (Util.isStrEmpty(tempDir)) {
                 transformListener.showError("解压apk失败了。");
+                LogUtil.info("解压apk失败了。");
                 return;
             }
 
@@ -67,13 +52,15 @@ public class TransformManager {
             List<String> jars = Dex2jarUtil.dex2jarImpl(tempDir);
             if (Util.isListEmpty(jars)){
                 transformListener.showError("dex 转成 jar 失败了");
+                LogUtil.info("dex 转成 jar 失败了");
                 return;
             }
 
             // 3.1 将工具类写到jar中
             boolean addFileSuc = FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", tempDir + File.separator + "classes.jar");
             if (!addFileSuc){
-                transformListener.showError("将工具类AppMonitor添加到jar中");
+                transformListener.showError("将工具类AppMonitor添加到jar中失败了");
+                LogUtil.info("将工具类AppMonitor添加到jar中失败了");
                 return;
             }
 
@@ -83,6 +70,7 @@ public class TransformManager {
 
             if (!isSuc2) {
                 transformListener.showError("jar 转成 dex 失败了");
+                LogUtil.info("jar 转成 dex 失败了");
                 return;
             }
 
@@ -91,6 +79,7 @@ public class TransformManager {
             boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, tempDir);
             if (!isSuc1) {
                 transformListener.showError("将dex放到apk中失败了");
+                LogUtil.info("将dex放到apk中失败了");
                 return;
             }
 
@@ -100,6 +89,7 @@ public class TransformManager {
             boolean isSuc = Dex2jarUtil.deleteMetaInfo(tempDir, apkPath);
             if (!isSuc) {
                 transformListener.showError("删除原apk中的meta-info 失败了");
+                LogUtil.info("删除原apk中的meta-info 失败了");
                 return;
             }
 
@@ -108,13 +98,7 @@ public class TransformManager {
             transformListener.apkSign(6, signApkPath);
             if (Util.isStrEmpty(signApkPath)) {
                 transformListener.showError("对apk签名失败了");
-                return;
-            }
-
-            // 8. 删除temp目录
-            boolean suc = FilesUtil.deleteTempDir(FilesUtil.getTempDirPath());
-            if (!suc){
-                transformListener.showError("删除临时目录失败了");
+                LogUtil.info("对apk签名失败了");
                 return;
             }
 
@@ -122,12 +106,34 @@ public class TransformManager {
             boolean succ = FilesUtil.openDir(signApkPath);
             if (!succ){
                 transformListener.showError("打开签名之后的apk目录失败");
+                LogUtil.info("打开签名之后的apk目录失败");
             }
-
             transformListener.finish(signApkPath);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     *  开始对APK进行插桩
+     * @param apkPath
+     * @param signFilePath
+     * @param signPwd
+     * @param signAlias
+     */
+    public void injectApk(String apkPath, String signFilePath, String signPwd, String signAlias){
+        handleApk(apkPath,signFilePath, signPwd, signAlias);
+
+        // 清除缓存数据
+        SettingHelper.getInstance().clearData();
+
+        // 删除无用的临时文件
+        //  删除temp目录
+        boolean suc = FilesUtil.deleteTempDir();
+        if (!suc){
+            transformListener.showError("删除临时目录失败了");
+        }
+
     }
 
     /**
@@ -139,8 +145,9 @@ public class TransformManager {
         transformListener = listener;
     }
 
+
     public static void main(String[] args){
 //        FilesUtil.deleteTempDir(FilesUtil.getTempDirPath());
-        Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath() + File.separator + "app-debug");
+        LogUtil.info("Test");
     }
 }

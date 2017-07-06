@@ -21,7 +21,12 @@
               "InjectPosition": ""
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "className": "android.app.Activity|android.support.v7.app.AppCompatActivity",
+      "InjectMethod": [
         {
           "methodName": "onWindowFocusChanged",
           "methodDesc": "(Z)V",
@@ -30,17 +35,10 @@
             {
               "InjectClass": "com.xdja.monitor.AppMonitor",
               "InjectMethodName": "monitorPageLoaded",
-              "InjectMethodDesc": "(JLjava/lang/String;)V",
+              "InjectMethodDesc": "(Ljava/lang/String;)V",
               "InjectPosition": ""
             }
           ]
-        }
-      ],
-      "InjectField": [
-        {
-          "InjectMethodParams": [],
-          "InjectFieldName": "",
-          "InjectFieldClassType": ""
         }
       ]
     }

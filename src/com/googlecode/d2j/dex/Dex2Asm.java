@@ -1,12 +1,11 @@
 package com.googlecode.d2j.dex;
 
-import java.io.File;
 import java.util.*;
 
 import com.googlecode.d2j.converter.Dex2IRConverter;
 import com.xdja.inject.setting.SettingEntity;
-import com.xdja.inject.util.ASMUtils;
-import com.xdja.inject.util.InjectUtil;
+import com.xdja.inject.setting.SettingHelper;
+import com.xdja.inject.asm.ASMUtils;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.ClassNode;
@@ -22,9 +21,7 @@ import com.xdja.inject.setting.SettingEntity.InjectSettingsBean.InjectMethodBean
 
 
 public class Dex2Asm {
-
-    // 标记是否需要注入代码
-    private boolean isShouldInject = false;
+    private String mCurKeyClass;
 
     protected static class Clz {
         public int access;
@@ -364,12 +361,6 @@ public class Dex2Asm {
             return;
         }
 
-        // add by zlw 判断是否需要对当前class进行注入
-        String key = InjectUtil.shouldModifyClass(classNode.className);
-        if (!Util.isStrEmpty(key)){
-            isShouldInject = true;
-        }
-
         // the default value of static-final field are omitted by dex, fix it
         DexFix.fixStaticFinalFieldValue(classNode);
 
@@ -454,7 +445,6 @@ public class Dex2Asm {
         }
         cv.visitEnd();
 
-        isShouldInject = false;
     }
 
     public void convertCode(DexMethodNode methodNode, MethodVisitor mv) {
@@ -504,6 +494,7 @@ public class Dex2Asm {
             return;
         }
         accept(fieldNode.anns, fv);
+        handleField(classNode, cv);
         fv.visitEnd();
     }
 
@@ -514,11 +505,16 @@ public class Dex2Asm {
      * @param classNode
      * @param cv
      */
-    private void handleField(ClassNode classNode, ClassVisitor cv){
-        if (!isShouldInject){
+    private void handleField(DexClassNode classNode, ClassVisitor cv){
+        List<SettingEntity.InjectSettingsBean.InjectFieldBean> InjectFieldList = SettingHelper.getInstance().shouldInjectField(mCurKeyClass);
+        if (Util.isListEmpty(InjectFieldList)){
             return;
         }
 
+        // 处理Field
+        for (SettingEntity.InjectSettingsBean.InjectFieldBean fieldBean : InjectFieldList){
+            ASMUtils.addClassStaticField(cv, fieldBean.getInjectFieldName(), ASMUtils.formatStrToClass(fieldBean.getInjectFieldClassType()));
+        }
 
     }
 
@@ -530,6 +526,9 @@ public class Dex2Asm {
         if (mv == null) {
             return;
         }
+        // 这里判断要hook的method是否在类里面存在，不存在就创建
+
+
         if (0 != (classNode.access & DexConstants.ACC_ANNOTATION)) { // its inside an annotation
             Object defaultValue = null;
             if (classNode.anns != null) {
@@ -581,6 +580,16 @@ public class Dex2Asm {
     }
 
     /**
+     *  判断要插入的方法是否在类里面
+     * @param classNode
+     * @param cv
+     * @return
+     */
+    private boolean isMethodIn(ClassNode classNode, ClassVisitor cv){
+        return false;
+    }
+
+    /**
      *  add by zlw
      *  对class进行过滤，并且插入需要插入的代码
      * @param classNode
@@ -588,24 +597,27 @@ public class Dex2Asm {
      * @param cv
      */
     private void handleInjectMethod(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
-        String key = InjectUtil.shouldModifyClass(pathToClassName(classNode.className));
+        mCurKeyClass = "";
+        String className = pathToClassName(classNode.className);
+        String key = SettingHelper.getInstance().shouldModifyClass(className);
+        mCurKeyClass = key;
         if (Util.isStrEmpty(key)){
             return;
         }
 
-        String methodKey = InjectUtil.shouldModifyMethod(methodName);
+        String methodKey = SettingHelper.getInstance().shouldModifyMethod(key, methodName);
         if (Util.isStrEmpty(methodKey)){
             return;
         }
 
         // 开始注入代码
-        List<InjectMethodBean.InjectContentBean> contentBeans = InjectUtil.getInjectParams(key, methodKey);
+        List<InjectMethodBean.InjectContentBean> contentBeans = SettingHelper.getInstance().getInjectParams(key, methodKey);
         if (Util.isListEmpty(contentBeans)){
             return;
         }
 
         for (InjectMethodBean.InjectContentBean contentBean: contentBeans){
-            ASMUtils.addStaticMethodToMethod(mv, contentBean.getInjectMethodName(), contentBean.getInjectMethodDesc(),classNameToPath(classNode.className));
+            ASMUtils.addStaticMethodToMethod(mv, contentBean.getInjectMethodName(), contentBean.getInjectMethodDesc(),formatPath(classNode.className));
         }
     }
 
@@ -614,15 +626,15 @@ public class Dex2Asm {
      * @param className
      * @return
      */
-    private String classNameToPath(String className){
+    private String formatPath(String className){
         // 去掉最前面的L
         if (className.startsWith("L")){
             className = className.substring(1);
         }
 
-        // 将/变成.
-        if (className.contains("/")){
-            className = className.replace("/", ".");
+        if (className.endsWith(";")){
+            className = className.substring(0, className.indexOf(";"));
+            return className;
         }
 
         return className;

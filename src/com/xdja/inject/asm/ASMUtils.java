@@ -1,6 +1,7 @@
-package com.xdja.inject.util;
+package com.xdja.inject.asm;
 
 import com.xdja.inject.Constants;
+import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 
 import static com.android.dx.cf.code.ByteOps.INVOKESPECIAL;
@@ -21,6 +22,17 @@ public class ASMUtils {
     public static void addClassStaticField(ClassVisitor cv, String fieldName, Class<?> typeClass){
         cv.visitField(ACC_PUBLIC|Opcodes.ACC_STATIC, fieldName, Type.getDescriptor(typeClass), null, null);
 
+    }
+
+    /**
+     *  访问方法体内部的field
+     * @param mv
+     * @param className
+     * @param fieldName
+     * @param typeSign
+     */
+    public static void setClassStaticFieldValue(MethodVisitor mv, String className, String fieldName, String typeSign) {
+        mv.visitFieldInsn(PUTSTATIC, className, fieldName, typeSign);
     }
 
     /**
@@ -68,5 +80,47 @@ public class ASMUtils {
     // TODO: 2017/6/29  考虑其他种类的调用。
     public static void addStaticMethodToMethod(MethodVisitor mv, String methodName, String methodDesc, String owner){
         mv.visitMethodInsn(INVOKESTATIC, owner, methodName, methodDesc, false);
+    }
+
+
+    /**
+     *  将对应的String转成class
+     * @param str
+     * @return
+     */
+    public static Class formatStrToClass(String str){
+        if (Util.isStrEmpty(str)){
+            return null;
+        }
+
+        if (str.equalsIgnoreCase("String")){
+            return String.class;
+        }else if (str.equalsIgnoreCase("Boolean")){
+            return Boolean.class;
+        }else if (str.equalsIgnoreCase("Int")){
+            return Integer.class;
+        }else if (str.equalsIgnoreCase("char")){
+            return char.class;
+        }else if (str.equalsIgnoreCase("byte")){
+            return Byte.class;
+        }else if (str.equalsIgnoreCase("Short")){
+            return short.class;
+        }else if (str.equalsIgnoreCase("Float")){
+            return Float.class;
+        }else if (str.equalsIgnoreCase("Double")){
+            return Double.class;
+        }else if (str.equalsIgnoreCase("long")){
+            return Long.class;
+        }else if (str.contains(".")){
+            // 某个引用类型
+            try {
+                Class c = Class.forName(str);
+                return c.getClass();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 }

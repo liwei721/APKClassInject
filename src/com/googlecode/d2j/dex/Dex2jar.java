@@ -32,7 +32,6 @@ import com.googlecode.d2j.node.DexMethodNode;
 import com.googlecode.d2j.reader.BaseDexFileReader;
 import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.setting.SettingHelper;
-import com.xdja.inject.transform.TransformImpl;
 import com.xdja.inject.util.InjectUtil;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.ClassVisitor;
@@ -88,11 +87,6 @@ public class Dex2jar {
     private void doTranslate(final Path dist) throws IOException {
 
         DexFileNode fileNode = new DexFileNode();
-        // add by zlw 将配置注入内容，加载到内存中
-        SettingEntity entity = SettingHelper.getSetting();
-        InjectUtil.initTargetClasses(entity);
-
-
         try {
             reader.accept(fileNode, readerConfig | DexFileReader.IGNORE_READ_EXCEPTION);
         } catch (Exception ex) {
@@ -188,28 +182,6 @@ public class Dex2jar {
         }.convertDex(fileNode, cvf);
 
     }
-
-    /**
-     *  处理在方法中注入代码的逻辑
-     *  @param node
-     *  @param mv
-     *
-     */
-    private void handleInjectMethod(DexMethodNode node, MethodVisitor mv){
-        // 1. 读取关于Inject的配置
-        SettingEntity entity = SettingHelper.getSetting();
-        if (entity == null || !entity.isIsInject() || Util.isListEmpty(entity.getInjectSettings()) ){
-            return;
-        }
-        List<SettingEntity.InjectSettingsBean> injectParamList = entity.getInjectSettings();
-        // 遍历需要注入的代码
-        for (SettingEntity.InjectSettingsBean injectParams : injectParamList){
-
-        }
-
-
-    }
-
 
     /**
      *  处理在类中添加方法或者属性的逻辑

@@ -229,130 +229,43 @@ public class InjectUtil {
     }
 
     /**
-     * 是否应该去对class文件进行修改
-     * @param className
+     *  通过class获取对应的ASM sign
+     * @param typeClass
      * @return
      */
-    public static String shouldModifyClass(String className){
-        if (Util.isStrEmpty(className)) return "";
-        for (Map.Entry<String, Integer> entry : targetClasses.entrySet()){
-            // matchType 是匹配的类型：正则、通配符、相等
-            int matchType = entry.getValue();
-            String key = entry.getKey();
-            List<String> clssExcs = classExcluds.get(key);
-            for (String clsssexclud : clssExcs){
-                if (InjectUtil.isPatternMatch(clsssexclud, className)){
-                    return "";
-                }
-            }
-            switch (matchType){
-                case Constants.MT_FULL:
-                    if (className.equals(key)){
-                        return key;
-                    }
-                case Constants.MT_REGEX:
-                    if (InjectUtil.regMatch(key, className)){
-                        return key;
-                    }
-                    break;
-                case Constants.MT_WILDCARD:
-                    if (InjectUtil.wildcardMatchPro(key, className)){
-                        return key;
-                    }
-                    break;
-                default:
-                    return "";
-
-            }
-
+    public static String getTypeSign(Class<?> typeClass)
+    {
+        if (Boolean.TYPE == typeClass) {
+            return "Z";
+        }
+        if (Byte.TYPE == typeClass) {
+            return "B";
+        }
+        if (Short.TYPE == typeClass) {
+            return "S";
+        }
+        if (Integer.TYPE == typeClass) {
+            return "I";
+        }
+        if (Float.TYPE == typeClass) {
+            return "F";
+        }
+        if (Double.TYPE == typeClass) {
+            return "D";
+        }
+        if (Long.TYPE == typeClass) {
+            return "J";
+        }
+        if (Character.TYPE == typeClass) {
+            return "C";
         }
 
-        return "";
-
-    }
-
-    /**
-     *  判断对应的method是否需要修改
-     * @param methodName
-     * @return
-     */
-    public static String shouldModifyMethod(String methodName){
-        if (Util.isStrEmpty(methodName)) return "";
-        for (Map.Entry<String, Integer> entry : targetMethods.entrySet()){
-            // matchType 是匹配的类型：正则、通配符、相等
-            int matchType = entry.getValue();
-            String key = entry.getKey();
-            List<String> methodExcs = methodExcluds.get(key);
-            for (String methodexclud : methodExcs){
-                if (InjectUtil.isPatternMatch(methodexclud, methodName)){
-                    return "";
-                }
-            }
-            switch (matchType){
-                case Constants.MT_FULL:
-                    if (methodName.equals(key)){
-                        return key;
-                    }
-                case Constants.MT_REGEX:
-                    if (InjectUtil.regMatch(key, methodName)){
-                        return key;
-                    }
-                    break;
-                case Constants.MT_WILDCARD:
-                    if (InjectUtil.wildcardMatchPro(key, methodName)){
-                        return key;
-                    }
-                    break;
-                default:
-                    return "";
-
-            }
-
+        String className = typeClass.getName();
+        if (className == null) {
+            return "";
         }
 
-        return "";
+        return className.replace(".", "/");
     }
 
-    /***
-     * 将要匹配的class及匹配类型存起来，方便后面调用
-     * @param entity
-     */
-    public static void initTargetClasses(SettingEntity entity){
-        if (entity == null) return;
-        mSettingentity = entity;
-        targetClasses.clear();
-        classExcluds.clear();
-        for (SettingEntity.InjectSettingsBean settingsBean : entity.getInjectSettings()){
-            // 根据className的值来判断
-            int type = InjectUtil.getMatchTypeByValue(settingsBean.getClassName());
-            targetClasses.put(settingsBean.getClassName(), type);
-            // 将className，对应的classExclude放到map中
-            classExcluds.put(settingsBean.getClassName(), settingsBean.getClassExclude());
-
-            // 对method进行处理
-
-            for (SettingEntity.InjectSettingsBean.InjectMethodBean methodBean : settingsBean.getInjectMethod()){
-                int methodType = InjectUtil.getMatchTypeByValue(methodBean.getMethodName());
-                targetMethods.put(methodBean.getMethodName(), methodType);
-                // 将method过滤项放到map中
-                methodExcluds.put(methodBean.getMethodName(), (List<String>) methodBean.getMethodExclude());
-
-                // 将要注入代码的信息进行存储
-                targetInjectParams.put(settingsBean.getClassName() + methodBean.getMethodName(), methodBean.getInjectContent());
-            }
-        }
-    }
-
-    /**
-     *  获取className对应的插桩参数
-     * @param className
-     * @return
-     */
-    public static List<InjectMethodBean.InjectContentBean> getInjectParams(String className, String methodName){
-        if (Util.isStrEmpty(className) || Util.isStrEmpty(methodName)){
-            return null;
-        }
-
-        return targetInjectParams.get(className + methodName);
-    }
 }
