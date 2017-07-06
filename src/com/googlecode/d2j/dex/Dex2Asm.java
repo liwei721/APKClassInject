@@ -1,13 +1,18 @@
 package com.googlecode.d2j.dex;
 
+import java.lang.reflect.*;
 import java.util.*;
 
+import com.googlecode.d2j.Field;
+import com.googlecode.d2j.Method;
 import com.googlecode.d2j.converter.Dex2IRConverter;
+import com.xdja.inject.asm.AsmDoWork;
 import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.setting.SettingHelper;
 import com.xdja.inject.asm.ASMUtils;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
+import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InnerClassNode;
 
@@ -617,7 +622,12 @@ public class Dex2Asm {
         }
 
         for (InjectMethodBean.InjectContentBean contentBean: contentBeans){
-            ASMUtils.addStaticMethodToMethod(mv, contentBean.getInjectMethodName(), contentBean.getInjectMethodDesc(),formatPath(classNode.className));
+            try {
+                java.lang.reflect.Method  excMethod = Class.forName(pathToClassName(classNode.className)).getDeclaredMethod();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            AsmDoWork.monitorPageStart(mv, classNode.className);
         }
     }
 

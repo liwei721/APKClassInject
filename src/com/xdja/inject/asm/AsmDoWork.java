@@ -1,5 +1,11 @@
 package com.xdja.inject.asm;
 
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Type;
+
+import static com.android.dx.cf.code.ByteOps.INVOKESTATIC;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+
 /**
  * Created by zlw on 2017/7/6.
  * Email: zlw@xdja.com
@@ -9,7 +15,14 @@ package com.xdja.inject.asm;
 public class AsmDoWork {
 
 
-    public static void monitorPageStart(){
-
+    /**
+     *  插入记录页面开始加载的方法
+     * @param mv
+     *
+     */
+    public static void monitorPageStart(MethodVisitor mv, String className){
+        mv.visitLdcInsn(Type.getType(className));
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getSimpleName", "()Ljava/lang/String;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "com/xdja/monitor/AppMonitor", "monitorPageStart", "(Ljava/lang/String;)V", false);
     }
 }
