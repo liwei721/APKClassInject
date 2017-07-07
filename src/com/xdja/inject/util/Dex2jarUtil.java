@@ -2,6 +2,7 @@ package com.xdja.inject.util;
 
 import com.android.dx.command.Main;
 import com.googlecode.dex2jar.tools.Dex2jarCmd;
+import com.googlecode.dex2jar.tools.Jar2Dex;
 import com.xdja.inject.Constants;
 
 import java.io.File;
@@ -90,9 +91,9 @@ public class Dex2jarUtil {
                 }
             }
 
-            String[] cmd = { "--dex", "--output=" + outDexPath, jarFile.getAbsolutePath() };
+            String[] cmd = {"-f", "-o"  , outDexPath, jarFile.getAbsolutePath() };
             try{
-                Main.main(cmd);
+                new Jar2Dex().doMain(cmd);
             }catch (Exception ex){
                 LogUtil.info(" dexName = " + " handle failed");
             }
@@ -128,7 +129,6 @@ public class Dex2jarUtil {
                 String aaptCmd = FilesUtil.getAaptcmdPath();
                 String cmd = aaptCmd + " r "  + new File(inputApkPath).getAbsolutePath();
                 for (File metaFile : metaList){
-                    // TODO: 2017/6/28 这里不加META-INFO,之前用命令行时貌似不需要加
                     cmd = cmd + " "+Constants.META_INFO + metaFile.getName();
                 }
 
@@ -275,5 +275,15 @@ public class Dex2jarUtil {
         jarPaths = Dex2jarUtil.dexs2jars(dexFiles);
 
         return jarPaths;
+    }
+
+
+    public static void main(String[] args){
+        String[] cmd = {"-f", "-o" , "E:\\javaworkspace\\ApkInjectTools\\classes.dex", "E:\\javaworkspace\\ApkInjectTools\\temp\\app-debug\\classes.jar" };
+        try{
+            new Jar2Dex().doMain(cmd);
+        }catch (Exception ex){
+            LogUtil.info(" dexName = " + " handle failed");
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.xdja.inject.setting.SettingEntity;
 import com.xdja.inject.setting.SettingHelper;
 import com.xdja.inject.asm.ASMUtils;
 import com.xdja.inject.util.InjectUtil;
+import com.xdja.inject.util.LogUtil;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 import org.objectweb.asm.Type;
@@ -650,17 +651,25 @@ public class Dex2Asm {
     private void handleKpiInject(DexClassNode classNode, MethodVisitor mv, ClassVisitor cv, String methodName){
         String className = pathToClassName(classNode.className);
         boolean isShoudInject = InjectUtil.isPatternMatch("*Activity", className);
-        if (isShoudInject && (!className.startsWith("com.android.") || !className.startsWith("android.support."))){
+        if (isShoudInject && !className.startsWith("com.android.") && !className.startsWith("android.support.")){
             // 判断方法名称
             if (methodName.endsWith("onCreate")){
-                AsmDoWork.monitorPageStart(mv);
+                LogUtil.info("oncreate inject = " + className);
+                AsmDoWork.monitorPageStart(mv, classNode.className);
             }
         }
 
         // 将结束的事件插入到Activity中的onWindowFocusChanged方法。
         if (className.equals("android.app.Activity")){
-            if (methodName.endsWith("onWindowFocusChanged")){
-                AsmDoWork.monitorPageLoaded(mv,classNode.className);
+            if (methodName.equals("onWindowFocusChanged")){
+                AsmDoWork.monitorPageLoaded(mv);
+            }
+        }
+
+        // 如果Activity继承AppCompatActivity那么在onContentChanged中插入方法
+        if (className.equals("android.support.v7.app.AppCompatActivity")){
+            if (methodName.equals("onContentChanged")){
+                AsmDoWork.monitorPageLoaded(mv);
             }
         }
     }

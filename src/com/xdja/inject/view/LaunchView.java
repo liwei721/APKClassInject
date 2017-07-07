@@ -3,6 +3,7 @@ package com.xdja.inject.view;
 import com.xdja.inject.Constants;
 import com.xdja.inject.transform.TransformListener;
 import com.xdja.inject.transform.TransformManager;
+import com.xdja.inject.util.LogUtil;
 import com.xdja.inject.util.Util;
 
 import javax.swing.*;
@@ -64,36 +65,48 @@ public class LaunchView extends JFrame implements ActionListener{
             @Override
             public void upzipApk(int i, String path) {
                 updateTips("执行第 " + i + " 步：解压apk！！，解压之后路径：" + path);
+                LogUtil.info("执行第 " + i + " 步：解压apk！！，解压之后路径：" + path);
             }
 
             @Override
             public void dex2jar(int i, String path) {
+                LogUtil.info("执行第 " + i + " 步：将dex转成jar！！");
                 updateTips("执行第 " + i + " 步：将dex转成jar！！");
             }
 
             @Override
             public void deleteMeta(int i, String var) {
+                LogUtil.info("执行第 " + i + " 步：删除apk中原有的签名信息！！");
                 updateTips("执行第 " + i + " 步：删除apk中原有的签名信息！！");
             }
 
             @Override
             public void dexToapk(int i, String var) {
+                LogUtil.info("执行第 " + i + " 步：将插桩后的dex push到apk中！！");
                 updateTips("执行第 " + i + " 步：将插桩后的dex push到apk中！！");
             }
 
             @Override
+            public void codeToJar(int i, String var) {
+                LogUtil.info("执行第 " + i + " 步：将工具类添加到jar中：" + var);
+                updateTips("执行第 " + i + " 步：将工具类添加到jar中：" + var);
+            }
+
+            @Override
             public void apkSign(int i, String var) {
+                LogUtil.info("执行第 " + i + " 步：对插桩后apk进行签名！！签名后的apk地址：" + var);
                 updateTips("执行第 " + i + " 步：对插桩后apk进行签名！！签名后的apk地址：" + var);
             }
 
             @Override
             public void jar2dex(int i, String var) {
+                LogUtil.info("执行第 " + i + " 步：将jar转成dex：" + var);
                 updateTips("执行第 " + i + " 步：将jar转成dex：" + var);
             }
 
             @Override
             public void finish(String apkPath) {
-                isTaskRunning = true;
+                isTaskRunning = false;
                 refreshCommitBtnState(isTaskRunning);
                 updateTips("插桩任务完成！！请在 ：" + apkPath + "查看");
             }

@@ -22,14 +22,11 @@ public class AppMonitor {
      * @param endTime
      * @param pageName
      */
-    public static void monitorPageLoaded(String pageName){
+    public static void monitorPageLoaded(){
         if (mStartTime != 0){
             long endTime = SystemClock.elapsedRealtime();
             long loadTime = endTime - mStartTime;
-            if (pageName == null || "".equals(pageName)){
-                pageName = mPageName;
-            }
-            Log.d("zlw", pageName + "cost :" + loadTime);
+            Log.d("zlw", mPageName + "cost :" + loadTime);
         }
         // 将StartTime清空
         mStartTime = 0;

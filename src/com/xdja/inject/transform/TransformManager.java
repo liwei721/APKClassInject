@@ -48,6 +48,7 @@ public class TransformManager {
             }
 
             // 3. 将dex转成jar,同时在dex2jar中完成代码注入
+            // TODO: 2017/7/7  这里异常流程需要考虑。
             transformListener.dex2jar(2, tempDir);
             List<String> jars = Dex2jarUtil.dex2jarImpl(tempDir);
             if (Util.isListEmpty(jars)){
@@ -57,6 +58,7 @@ public class TransformManager {
             }
 
             // 3.1 将工具类写到jar中
+            transformListener.codeToJar(2, tempDir);
             boolean addFileSuc = FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", tempDir + File.separator + "classes.jar");
             if (!addFileSuc){
                 transformListener.showError("将工具类AppMonitor添加到jar中失败了");
@@ -65,9 +67,8 @@ public class TransformManager {
             }
 
             // 4. 将jar转成dex，使用dx工具。
-            boolean isSuc2 = Dex2jarUtil.jar2Dex(jars);
             transformListener.jar2dex(3, apkPath);
-
+            boolean isSuc2 = Dex2jarUtil.jar2Dex(jars);
             if (!isSuc2) {
                 transformListener.showError("jar 转成 dex 失败了");
                 LogUtil.info("jar 转成 dex 失败了");
@@ -148,6 +149,15 @@ public class TransformManager {
 
     public static void main(String[] args){
 //        FilesUtil.deleteTempDir(FilesUtil.getTempDirPath());
-        LogUtil.info("Test");
+//        LogUtil.info("Test");
+//        List<String> jars = Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath());
+        try {
+            FilesUtil.decompressApk("F:\\app-debug.apk");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<String> jars = Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath());
+//        FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", FilesUtil.getTempDirPath() + File.separator + "classes.jar");
     }
 }

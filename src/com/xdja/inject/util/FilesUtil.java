@@ -215,7 +215,7 @@ public class FilesUtil {
             File[] classFiles = new File(FilesUtil.getResourcePath()).listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File pathname) {
-                    if (pathname.isFile() && pathname.getName().equals(".class")){
+                    if (pathname.isFile() && pathname.getName().endsWith(".class")){
                         return true;
                     }
                     return false;

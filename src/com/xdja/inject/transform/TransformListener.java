@@ -10,6 +10,7 @@ public interface TransformListener {
      void dex2jar(int j, String path);
      void deleteMeta(int i, String var);
      void dexToapk(int i, String var);
+     void codeToJar(int i, String var);
      void apkSign(int i , String var);
      void jar2dex(int i, String var);
      void finish(String var);

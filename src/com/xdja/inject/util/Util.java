@@ -14,33 +14,43 @@ import java.util.zip.ZipFile;
  */
 public class Util {
     /**
-     *  判断字符串是否是空的
+     * 判断字符串是否是空的
+     *
      * @param str
      * @return
      */
-    public static boolean isStrEmpty(String str){
+    public static boolean isStrEmpty(String str) {
         return str == null || "".equals(str);
     }
 
 
     /**
-     *  这里 执行cmd命令没有返回值
+     * 这里 执行cmd命令没有返回值
+     *
      * @param cmd
      * @param isOutputLog
      * @return
      */
-    public static boolean execCmd(String cmd, boolean isOutputLog)
-    {
+    public static boolean execCmd(String cmd, boolean isOutputLog) {
         BufferedReader br = null;
+        BufferedReader errorReader = null;
         try {
             Process p = Runtime.getRuntime().exec(cmd);
             br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            errorReader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
             String line = null;
-            while ((line = br.readLine()) != null)
-                if (isOutputLog)
+            while ((line = br.readLine()) != null){
+                if (isOutputLog){
                     System.out.println(line);
-        }
-        catch (Exception e) {
+                }
+            }
+
+            while ((line = errorReader.readLine()) != null){
+                System.out.println(line);
+//                isSuc = false;
+            }
+        } catch (Exception e) {
             System.out.println("cmd error:" + e.toString());
 
             if (br != null)
@@ -49,9 +59,7 @@ public class Util {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-        }
-        finally
-        {
+        } finally {
             if (br != null) {
                 try {
                     br.close();
@@ -64,11 +72,12 @@ public class Util {
     }
 
     /**
-     *  判断 参数列表是否是empty的。
+     * 判断 参数列表是否是empty的。
+     *
      * @return
      */
-    public static boolean isListEmpty(List list){
-        if (list == null || list.size() < 1){
+    public static boolean isListEmpty(List list) {
+        if (list == null || list.size() < 1) {
             return true;
         }
 
