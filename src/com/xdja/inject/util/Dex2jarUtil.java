@@ -1,9 +1,8 @@
 package com.xdja.inject.util;
 
-import com.android.dx.command.Main;
 import com.googlecode.dex2jar.tools.Dex2jarCmd;
 import com.googlecode.dex2jar.tools.Jar2Dex;
-import com.xdja.inject.Constants;
+import com.xdja.inject.consant.Constants;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,12 +11,12 @@ import java.util.List;
 
 /**
  * Created by zlw on 2017/6/28.
- * Dex2jarçš„ä¸€äº›å·¥å…·ç±»ï¼Œå°è£…å¸¸ç”¨çš„æ“ä½œ
+ * Dex2jarµÄÒ»Ğ©¹¤¾ßÀà£¬·â×°³£ÓÃµÄ²Ù×÷
  */
 public class Dex2jarUtil {
 
     /**
-     *  å°†dexè½¬æ¢æˆjarï¼Œå‘½åæ˜¯ä»¥jarçš„åå­—å‘½åï¼Œä¸”è¿˜æ”¾åœ¨åŸæ¥çš„ç›®å½•ä¸‹
+     *  ½«dex×ª»»³Éjar£¬ÃüÃûÊÇÒÔjarµÄÃû×ÖÃüÃû£¬ÇÒ»¹·ÅÔÚÔ­À´µÄÄ¿Â¼ÏÂ
      * @param dexPath
      */
     public static String dex2jar(String dexPath){
@@ -38,7 +37,7 @@ public class Dex2jarUtil {
     }
 
     /**
-     *  å°†è‡³å°‘ä¸€ä¸ªdexè½¬æˆå¯¹åº”çš„jar
+     *  ½«ÖÁÉÙÒ»¸ödex×ª³É¶ÔÓ¦µÄjar
      * @param dexs
      * @return
      */
@@ -57,11 +56,12 @@ public class Dex2jarUtil {
     }
 
     /**
-     *  å°†jarè½¬æˆdexï¼Œä½¿ç”¨dxå·¥å…·
+     *  ½«jar×ª³Édex£¬Ê¹ÓÃdx¹¤¾ß
      * @param jarPathList
-     * @return è¿”å›jarçš„ä¸´æ—¶ç›®å½•
+     * @param tempDir  ½âÑ¹Ö®ºóµÄÄ¿Â¼
+     * @return ·µ»ØjarµÄÁÙÊ±Ä¿Â¼
      */
-    public static boolean  jar2Dex(List<String> jarPathList) throws IOException {
+    public static boolean  jar2Dex(List<String> jarPathList, String tempDir) throws IOException {
         if (Util.isListEmpty(jarPathList)){
             LogUtil.info("jar2Dex input jars path is null");
             return false;
@@ -74,8 +74,7 @@ public class Dex2jarUtil {
             }
 
             String dexName = jarName2DexName(jarFile.getName());
-            String rootPath = FilesUtil.getBaseProjectPath();
-            String outDexPath = rootPath + File.separator+ dexName;
+            String outDexPath = tempDir + File.separator+ dexName;
             File outDexFile = new File(outDexPath);
             if (!outDexFile.getParentFile().exists()){
                 boolean isSuc = outDexFile.getParentFile().mkdirs();
@@ -103,7 +102,7 @@ public class Dex2jarUtil {
     }
 
     /**
-     *  å°†jarnameè½¬æˆdex name
+     *  ½«jarname×ª³Édex name
      * @param jarName
      * @return
      */
@@ -112,7 +111,7 @@ public class Dex2jarUtil {
     }
 
     /**
-     *  åˆ é™¤apkæ–‡ä»¶ä¸­çš„ç­¾åä¿¡æ¯ã€‚
+     *  É¾³ıapkÎÄ¼şÖĞµÄÇ©ÃûĞÅÏ¢¡£
      * @param unzipDir
      * @param inputApkPath
      * @return
@@ -132,7 +131,13 @@ public class Dex2jarUtil {
                     cmd = cmd + " "+Constants.META_INFO + metaFile.getName();
                 }
 
-                return Util.execCmd(cmd, true);
+                ExecShellUtil.CommandResult result = ExecShellUtil.getInstance().execCmdCommand(cmd, false, true);
+                if (result != null && Util.isStrEmpty(result.errorMsg)){
+                    return true;
+                }else {
+                    LogUtil.info("deleteMetaInfo fail");
+                    return false;
+                }
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -143,7 +148,7 @@ public class Dex2jarUtil {
     }
 
     /**
-     *  å°† dexæ–‡ä»¶å‹å…¥åˆ°apkä¸­ã€‚
+     *  ½« dexÎÄ¼şÑ¹Èëµ½apkÖĞ¡£
      *
      * @param apkPath
      */
@@ -159,24 +164,24 @@ public class Dex2jarUtil {
                     }
                 }
 
-                if (!Util.execCmd(rmCmd, true)){
-                    LogUtil.info("addDexToAPK delete origin dex fail");
-                    return false;
-                }
+                ExecShellUtil.getInstance().execCmdCommand(rmCmd, false, true);
             }
 
-            File tempDexFolder = new File(FilesUtil.getBaseProjectPath());
+            File tempDexFolder = new File(tempDir);
             if (tempDexFolder.exists()){
                 File[] tempDexFiles = tempDexFolder.listFiles();
                 if (tempDexFiles == null || tempDexFiles.length < 1) return false;
 
                 for (File dexFile : tempDexFiles){
                     if (dexFile.getName().endsWith(".dex")){
-                        addCmd = addCmd + " " + dexFile.getName();
+                        addCmd = addCmd + " " + dexFile.getAbsolutePath();
                     }
                 }
 
-                if (!Util.execCmd(addCmd, true)){
+                ExecShellUtil.CommandResult result = ExecShellUtil.getInstance().execCmdCommand(addCmd, false, true);
+                if (result != null && Util.isStrEmpty(result.errorMsg)){
+                    return true;
+                }else {
                     LogUtil.info("addDexToAPK add dex to apk fail");
                     return false;
                 }
@@ -188,11 +193,11 @@ public class Dex2jarUtil {
     }
 
     /**
-     *  å¯¹apké‡æ–°è¿›è¡Œç­¾å
-     *  ä½¿ç”¨å…¬å¸çš„ç­¾åæ–‡ä»¶
+     *  ¶ÔapkÖØĞÂ½øĞĞÇ©Ãû
+     *  Ê¹ÓÃ¹«Ë¾µÄÇ©ÃûÎÄ¼ş
      * @param apkPath
      * @param signFilePath
-     * @param pwd  ç­¾åæ–‡ä»¶å¯†ç 
+     * @param pwd  Ç©ÃûÎÄ¼şÃÜÂë
      * @return
      */
     public static String signApk(String apkPath, String signFilePath, String pwd, String signName){
@@ -200,18 +205,18 @@ public class Dex2jarUtil {
             File signFile = new File(signFilePath);
             File apkFile = new File(apkPath);
             if (!apkFile.exists()){
-                LogUtil.info("ç­¾åapkæ—¶ï¼ŒåŸapkä¸å­˜åœ¨ï¼Œè¯·æ£€æŸ¥");
+                LogUtil.info("Ç©ÃûapkÊ±£¬Ô­apk²»´æÔÚ£¬Çë¼ì²é");
                 return "";
             }
 
             if (!signFile.exists()){
-                LogUtil.info("ç­¾åæ–‡ä»¶ä¸å­˜åœ¨ï¼Œå°†ä½¿ç”¨é»˜è®¤çš„ç­¾åé…ç½®");
+                LogUtil.info("Ç©ÃûÎÄ¼ş²»´æÔÚ£¬½«Ê¹ÓÃÄ¬ÈÏµÄÇ©ÃûÅäÖÃ");
                 signFilePath = new File(FilesUtil.getBaseProjectPath() + File.separator + "config" + File.separator + Constants.signFileName).getAbsolutePath();
                 pwd = Constants.SIGNPWD;
                 signName = Constants.SIGNALIAS;
             }
 
-            //æ„é€ ç­¾åä¹‹åçš„apkåå­—
+            //¹¹ÔìÇ©ÃûÖ®ºóµÄapkÃû×Ö
             String origAPkPath = apkFile.getAbsolutePath();
             String singedapk = apkFile.getAbsolutePath().substring(0, origAPkPath.indexOf(".apk")) + "_inject_sign.apk";
 
@@ -226,24 +231,26 @@ public class Dex2jarUtil {
             signCmd.append(signName + " ");
             signCmd.append("-digestalg SHA1 -sigalg MD5withRSA");
 
-            boolean isSuc = Util.execCmd(signCmd.toString(), false);
-            if (!isSuc){
+
+            ExecShellUtil.CommandResult result = ExecShellUtil.getInstance().execCmdCommand(signCmd.toString(), false, true);
+            if (result != null && Util.isStrEmpty(result.errorMsg)){
+                return singedapk;
+            }else {
+                LogUtil.info("addDexToAPK delete origin dex fail");
                 return "";
             }
 
-
-            return singedapk;
         }catch (Exception ex){
             ex.printStackTrace();
-            LogUtil.info("ç­¾åapkå¤±è´¥ " + ex.getMessage());
+            LogUtil.info("Ç©ÃûapkÊ§°Ü " + ex.getMessage());
         }
 
         return "";
     }
     /**
-     *  å°†dexè½¬æˆjar
-     * @param zipFolder  è§£å‹apkä¹‹åçš„folder
-     * @return  ç”Ÿæˆçš„dexè·¯å¾„
+     *  ½«dex×ª³Éjar
+     * @param zipFolder  ½âÑ¹apkÖ®ºóµÄfolder
+     * @return  Éú³ÉµÄdexÂ·¾¶
      */
     public static List<String> dex2jarImpl(String zipFolder){
         List<String> jarPaths = new ArrayList<>(3);
@@ -257,7 +264,7 @@ public class Dex2jarUtil {
         }
 
         /**
-         *  è¿‡æ»¤å‡ºæ‰€æœ‰ä»¥dexç»“å°¾çš„æ–‡ä»¶
+         *  ¹ıÂË³öËùÓĞÒÔdex½áÎ²µÄÎÄ¼ş
          */
         File[] dexFiles = apkunZipFile.listFiles(pathname -> {
             if (pathname.isFile() && pathname.getName().endsWith(".dex")){
@@ -270,9 +277,14 @@ public class Dex2jarUtil {
             return jarPaths;
         }
         /**
-         * éå†dexFileï¼Œå°†dexè½¬æˆjar
+         * ±éÀúdexFile£¬½«dex×ª³Éjar
          */
         jarPaths = Dex2jarUtil.dexs2jars(dexFiles);
+
+        /**
+         * ½«Ô­Ä¿Â¼ÖĞµÄdexÎÄ¼şÉ¾³ı
+         */
+        FilesUtil.deleteDexFiles(zipFolder);
 
         return jarPaths;
     }

@@ -11,103 +11,103 @@ import java.util.List;
 
 /**
  * Created by zlw on 2017/6/23.
- * è¿™ä¸ªç±»è´Ÿè´£ä¸»æµç¨‹ï¼Œå°†æ•´ä¸ªæµç¨‹ä¸²è”èµ·æ¥
+ * Õâ¸öÀà¸ºÔğÖ÷Á÷³Ì£¬½«Õû¸öÁ÷³Ì´®ÁªÆğÀ´
  */
 public class TransformManager {
     private SettingEntity setting;
     private TransformListener transformListener;
 
     /**
-     * å¯¹Apkè¿›è¡Œå¤„ç†
+     * ¶ÔApk½øĞĞ´¦Àí
      *
-     * @param apkPath      éœ€è¦å¤„ç†çš„apk path
+     * @param apkPath      ĞèÒª´¦ÀíµÄapk path
      * @param signAlias
      * @param signFilePath
      * @param signPwd
      */
     private void handleApk(String apkPath, String signFilePath, String signPwd, String signAlias) {
         try {
-            // å¦‚æœæ²¡æœ‰è¾“å…¥apkpathï¼Œå°±è¿”å›
+            // Èç¹ûÃ»ÓĞÊäÈëapkpath£¬¾Í·µ»Ø
             if (Util.isStrEmpty(apkPath)) return;
             transformListener.start();
-            // 1. åˆ¤æ–­é…ç½®æ˜¯å¦æ­£ç¡®
+            // 1. ÅĞ¶ÏÅäÖÃÊÇ·ñÕıÈ·
             String result = SettingHelper.getInstance().isSettingEnable();
             if (!"".equals(result)){
                 transformListener.showError(result);
                 return;
             }
 
-            // 2. è§£å‹apkåˆ°tempç›®å½•
+            // 2. ½âÑ¹apkµ½tempÄ¿Â¼
             transformListener.upzipApk(1, apkPath);
             String tempDir = FilesUtil.decompressApk(apkPath);
-            // å¦‚æœä¸´æ—¶ç›®å½•ä¸ºnullï¼Œå¯èƒ½è§£å‹æ²¡æœ‰æˆåŠŸï¼Œç›´æ¥è¿”å›ã€‚
+            // Èç¹ûÁÙÊ±Ä¿Â¼Îªnull£¬¿ÉÄÜ½âÑ¹Ã»ÓĞ³É¹¦£¬Ö±½Ó·µ»Ø¡£
             if (Util.isStrEmpty(tempDir)) {
-                transformListener.showError("è§£å‹apkå¤±è´¥äº†ã€‚");
-                LogUtil.info("è§£å‹apkå¤±è´¥äº†ã€‚");
+                transformListener.showError("½âÑ¹apkÊ§°ÜÁË¡£");
+                LogUtil.info("½âÑ¹apkÊ§°ÜÁË¡£");
                 return;
             }
 
-            // 3. å°†dexè½¬æˆjar,åŒæ—¶åœ¨dex2jarä¸­å®Œæˆä»£ç æ³¨å…¥
-            // TODO: 2017/7/7  è¿™é‡Œå¼‚å¸¸æµç¨‹éœ€è¦è€ƒè™‘ã€‚
+            // 3. ½«dex×ª³Éjar,Í¬Ê±ÔÚdex2jarÖĞÍê³É´úÂë×¢Èë
+            // TODO: 2017/7/7  ÕâÀïÒì³£Á÷³ÌĞèÒª¿¼ÂÇ¡£
             transformListener.dex2jar(2, tempDir);
             List<String> jars = Dex2jarUtil.dex2jarImpl(tempDir);
             if (Util.isListEmpty(jars)){
-                transformListener.showError("dex è½¬æˆ jar å¤±è´¥äº†");
-                LogUtil.info("dex è½¬æˆ jar å¤±è´¥äº†");
+                transformListener.showError("dex ×ª³É jar Ê§°ÜÁË");
+                LogUtil.info("dex ×ª³É jar Ê§°ÜÁË");
                 return;
             }
 
-            // 3.1 å°†å·¥å…·ç±»å†™åˆ°jarä¸­
+            // 3.1 ½«¹¤¾ßÀàĞ´µ½jarÖĞ
             transformListener.codeToJar(2, tempDir);
-            boolean addFileSuc = FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", tempDir + File.separator + "classes.jar");
+            boolean addFileSuc = FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", tempDir );
             if (!addFileSuc){
-                transformListener.showError("å°†å·¥å…·ç±»AppMonitoræ·»åŠ åˆ°jarä¸­å¤±è´¥äº†");
-                LogUtil.info("å°†å·¥å…·ç±»AppMonitoræ·»åŠ åˆ°jarä¸­å¤±è´¥äº†");
+                transformListener.showError("½«¹¤¾ßÀàAppMonitorÌí¼Óµ½jarÖĞÊ§°ÜÁË");
+                LogUtil.info("½«¹¤¾ßÀàAppMonitorÌí¼Óµ½jarÖĞÊ§°ÜÁË");
                 return;
             }
 
-            // 4. å°†jarè½¬æˆdexï¼Œä½¿ç”¨dxå·¥å…·ã€‚
+            // 4. ½«jar×ª³Édex£¬Ê¹ÓÃdx¹¤¾ß¡£
             transformListener.jar2dex(3, apkPath);
-            boolean isSuc2 = Dex2jarUtil.jar2Dex(jars);
+            boolean isSuc2 = Dex2jarUtil.jar2Dex(jars, tempDir);
             if (!isSuc2) {
-                transformListener.showError("jar è½¬æˆ dex å¤±è´¥äº†");
-                LogUtil.info("jar è½¬æˆ dex å¤±è´¥äº†");
+                transformListener.showError("jar ×ª³É dex Ê§°ÜÁË");
+                LogUtil.info("jar ×ª³É dex Ê§°ÜÁË");
                 return;
             }
 
-            // 5. å°†ä¸Šé¢çš„dexæ”¾åˆ°apkä¸­
+            // 5. ½«ÉÏÃæµÄdex·Åµ½apkÖĞ
             transformListener.dexToapk(4, apkPath);
             boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, tempDir);
             if (!isSuc1) {
-                transformListener.showError("å°†dexæ”¾åˆ°apkä¸­å¤±è´¥äº†");
-                LogUtil.info("å°†dexæ”¾åˆ°apkä¸­å¤±è´¥äº†");
+                transformListener.showError("½«dex·Åµ½apkÖĞÊ§°ÜÁË");
+                LogUtil.info("½«dex·Åµ½apkÖĞÊ§°ÜÁË");
                 return;
             }
 
-            // å¦‚æœæˆåŠŸ
-            // 6. åˆ é™¤apkä¸­åŸæ¥çš„ç­¾åæ–‡ä»¶
+            // Èç¹û³É¹¦
+            // 6. É¾³ıapkÖĞÔ­À´µÄÇ©ÃûÎÄ¼ş
             transformListener.deleteMeta(5, apkPath);
             boolean isSuc = Dex2jarUtil.deleteMetaInfo(tempDir, apkPath);
             if (!isSuc) {
-                transformListener.showError("åˆ é™¤åŸapkä¸­çš„meta-info å¤±è´¥äº†");
-                LogUtil.info("åˆ é™¤åŸapkä¸­çš„meta-info å¤±è´¥äº†");
+                transformListener.showError("É¾³ıÔ­apkÖĞµÄmeta-info Ê§°ÜÁË");
+                LogUtil.info("É¾³ıÔ­apkÖĞµÄmeta-info Ê§°ÜÁË");
                 return;
             }
 
-            // 7. å¯¹apkè¿›è¡Œç­¾å
+            // 7. ¶Ôapk½øĞĞÇ©Ãû
             String signApkPath = Dex2jarUtil.signApk(apkPath, signFilePath, signPwd, signAlias);
             transformListener.apkSign(6, signApkPath);
             if (Util.isStrEmpty(signApkPath)) {
-                transformListener.showError("å¯¹apkç­¾åå¤±è´¥äº†");
-                LogUtil.info("å¯¹apkç­¾åå¤±è´¥äº†");
+                transformListener.showError("¶ÔapkÇ©ÃûÊ§°ÜÁË");
+                LogUtil.info("¶ÔapkÇ©ÃûÊ§°ÜÁË");
                 return;
             }
 
-            // æ‰€æœ‰ä»»åŠ¡éƒ½æˆåŠŸå°±æ‰“å¼€ç›®å½•
+            // ËùÓĞÈÎÎñ¶¼³É¹¦¾Í´ò¿ªÄ¿Â¼
             boolean succ = FilesUtil.openDir(signApkPath);
             if (!succ){
-                transformListener.showError("æ‰“å¼€ç­¾åä¹‹åçš„apkç›®å½•å¤±è´¥");
-                LogUtil.info("æ‰“å¼€ç­¾åä¹‹åçš„apkç›®å½•å¤±è´¥");
+                transformListener.showError("´ò¿ªÇ©ÃûÖ®ºóµÄapkÄ¿Â¼Ê§°Ü");
+                LogUtil.info("´ò¿ªÇ©ÃûÖ®ºóµÄapkÄ¿Â¼Ê§°Ü");
             }
             transformListener.finish(signApkPath);
         } catch (Exception ex) {
@@ -116,7 +116,7 @@ public class TransformManager {
     }
 
     /**
-     *  å¼€å§‹å¯¹APKè¿›è¡Œæ’æ¡©
+     *  ¿ªÊ¼¶ÔAPK½øĞĞ²å×®
      * @param apkPath
      * @param signFilePath
      * @param signPwd
@@ -125,20 +125,20 @@ public class TransformManager {
     public void injectApk(String apkPath, String signFilePath, String signPwd, String signAlias){
         handleApk(apkPath,signFilePath, signPwd, signAlias);
 
-        // æ¸…é™¤ç¼“å­˜æ•°æ®
+        // Çå³ı»º´æÊı¾İ
         SettingHelper.getInstance().clearData();
 
-        // åˆ é™¤æ— ç”¨çš„ä¸´æ—¶æ–‡ä»¶
-        //  åˆ é™¤tempç›®å½•
+        // É¾³ıÎŞÓÃµÄÁÙÊ±ÎÄ¼ş
+        //  É¾³ıtempÄ¿Â¼
         boolean suc = FilesUtil.deleteTempDir();
         if (!suc){
-            transformListener.showError("åˆ é™¤ä¸´æ—¶ç›®å½•å¤±è´¥äº†");
+            transformListener.showError("É¾³ıÁÙÊ±Ä¿Â¼Ê§°ÜÁË");
         }
 
     }
 
     /**
-     * è®¾ç½®ç›‘å¬
+     * ÉèÖÃ¼àÌı
      *
      * @param listener
      */
@@ -152,12 +152,15 @@ public class TransformManager {
 //        LogUtil.info("Test");
 //        List<String> jars = Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath());
         try {
-            FilesUtil.decompressApk("F:\\app-debug.apk");
+            String tempdir =   FilesUtil.decompressApk("F:\\com.hupu.games_7.0.17.9574_liqucn.com.apk");
+            List<String> jars = Dex2jarUtil.dex2jarImpl(tempdir);
+            Dex2jarUtil.jar2Dex(jars, tempdir);
+            Dex2jarUtil.addDexToApk("F:\\com.hupu.games_7.0.17.9574_liqucn.com.apk", tempdir);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        List<String> jars = Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath());
+
 //        FilesUtil.addFileToJar(FilesUtil.getResourcePath() + File.separator + "AppMonitor.java", FilesUtil.getTempDirPath() + File.separator + "classes.jar");
     }
 }

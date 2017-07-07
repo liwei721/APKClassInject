@@ -1,4 +1,4 @@
-package com.xdja.inject.asm.performance;
+package com.xdja.inject.setting.performance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by zlw on 2017/7/7.
  * Email: zlw@xdja.com
- * function:  é‡‡é›†æ€§èƒ½æ•°æ®çš„é…ç½®
+ * function:  ²É¼¯ĞÔÄÜÊı¾İµÄÅäÖÃ
  */
 public class PerformanceSetting {
 

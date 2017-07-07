@@ -1,10 +1,9 @@
 package com.xdja.inject.asm;
 
-import com.xdja.inject.Constants;
+import com.xdja.inject.consant.Constants;
 import com.xdja.inject.util.Util;
 import org.objectweb.asm.*;
 
-import static com.android.dx.cf.code.ByteOps.INVOKESPECIAL;
 import static org.objectweb.asm.Opcodes.*;
 
 /**

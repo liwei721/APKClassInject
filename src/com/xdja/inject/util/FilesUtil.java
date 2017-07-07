@@ -1,6 +1,6 @@
 package com.xdja.inject.util;
 
-import com.xdja.inject.Constants;
+import com.xdja.inject.consant.Constants;
 
 import java.io.*;
 import java.util.Enumeration;
@@ -177,14 +177,50 @@ public class FilesUtil {
         }
         try {
             String cmd = "explorer " + targetDir;
-            Util.execCmd(cmd, false);
-            return true;
+            ExecShellUtil.CommandResult result = ExecShellUtil.getInstance().execCmdCommand(cmd, false,true);
+            if (result!= null && Util.isStrEmpty(result.errorMsg)){
+                return true;
+            }
         }catch (Exception ex){
             ex.printStackTrace();
         }
         return false;
     }
 
+    /**
+     *  删除原文件中的dex文件
+     * @param tempDir
+     * @return
+     */
+    public static boolean deleteDexFiles(String tempDir){
+        File file = new File(tempDir);
+        if (!file.exists()){
+            return false;
+        }
+
+        File[] dexFiles = file.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if (pathname.isFile() && pathname.getName().endsWith(".dex")){
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        if (dexFiles == null){
+            return false;
+        }
+
+        boolean result = true;
+        for (File dexFile : dexFiles){
+            if(!deleteFile(dexFile.getAbsolutePath())){
+                result = false;
+            }
+        }
+
+        return result;
+    }
 
     /**
      * 删除不用的目录
@@ -315,7 +351,10 @@ public class FilesUtil {
     private static boolean compileJavaFile(String javaFilePath){
         try{
             String cmd = "javac -encoding UTF-8 -cp " + FilesUtil.getAndroidJarPath() + " " + javaFilePath ;
-            return Util.execCmd(cmd, true);
+            ExecShellUtil.CommandResult result = ExecShellUtil.getInstance().execCmdCommand(cmd, false, true);
+            if (result != null && Util.isStrEmpty(result.errorMsg)){
+                return true;
+            }
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -330,22 +369,38 @@ public class FilesUtil {
      */
     private static boolean addClassFileToJar(String JarPath, String classFilePath){
         try{
-            File oldjarFile = new File(JarPath);
-            if (!oldjarFile.exists()){
+            // 获取所有的jar
+            File jarFile = new File(JarPath);
+            File[] jarFiles = jarFile.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File pathname) {
+                    if (pathname.isFile() && pathname.getName().endsWith(".jar")){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            if (jarFiles == null || jarFiles.length < 1){
                 return false;
             }
-            File newJarFile = new File(oldjarFile.getParent() + File.separator + "temp_" + oldjarFile.getName());
-            if (!newJarFile.exists()){
-                newJarFile.createNewFile();
-            }
 
-            FilesUtil.addFileToZipFile(classFilePath, oldjarFile.getAbsolutePath(), newJarFile.getAbsolutePath());
-            if (oldjarFile.delete()){
-                if (newJarFile.renameTo(oldjarFile)){
-                    return true;
+            for (File oldjarFile : jarFiles){
+                if (!oldjarFile.exists()){
+                    return false;
+                }
+                File newJarFile = new File(oldjarFile.getParent() + File.separator + "temp_" + oldjarFile.getName());
+                if (!newJarFile.exists()){
+                    newJarFile.createNewFile();
+                }
+
+                FilesUtil.addFileToZipFile(classFilePath, oldjarFile.getAbsolutePath(), newJarFile.getAbsolutePath());
+                if (oldjarFile.delete()){
+                    if (newJarFile.renameTo(oldjarFile)){
+                        return true;
+                    }
                 }
             }
-
         }catch (Exception ex){
             ex.printStackTrace();
         }

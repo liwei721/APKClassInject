@@ -13,14 +13,16 @@ public class AppMonitor {
     private static long mStartTime = 0;
     private static String mPageName = "";
 
+    /**
+     *  页面开始时的记录
+     * @param pageName
+     */
     public static void monitorPageStart(String pageName){
         mStartTime = SystemClock.elapsedRealtime();
         mPageName = pageName;
     }
     /**
      *  页面加载时间的方法
-     * @param endTime
-     * @param pageName
      */
     public static void monitorPageLoaded(){
         if (mStartTime != 0){

@@ -1,6 +1,6 @@
 package com.xdja.inject.util;
 
-import com.xdja.inject.Constants;
+import com.xdja.inject.consant.Constants;
 import com.xdja.inject.setting.SettingEntity;
 
 import java.io.File;

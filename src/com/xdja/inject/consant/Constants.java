@@ -1,4 +1,4 @@
-package com.xdja.inject;
+package com.xdja.inject.consant;
 
 /**
  * Created by zlw on 2017/6/23.
@@ -28,16 +28,16 @@ public class Constants {
     // META-INFO
     public final static String META_INFO = "META-INF/";
 
-    // UI鐩稿叧
-    public final static String TITLE = "浠ｇ爜鎻掓々宸ュ叿";
+    // UI相关
+    public final static String TITLE = "代码插桩工具";
     public final static String VERSION = "1.0";
 
-    // 绛惧悕榛樿鐩稿叧
+    // 签名默认相关
     public final static String signFileName = "androidsign.jks";
     public final static String SIGNPWD = "60621210";
     public final static String SIGNALIAS = "androidsign.keystore";
 
-    // 榛樿鐨勫伐鍏风被
+    // 默认的工具类
     public final static String MONITOR_CLASSNAME = "com.xdja.monitor.AppMonitor";
     public final static String MONITOR_CLASS = "AppMonitor.class";
 

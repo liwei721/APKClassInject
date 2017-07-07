@@ -1,6 +1,6 @@
 package com.xdja.inject.view;
 
-import com.xdja.inject.Constants;
+import com.xdja.inject.consant.Constants;
 import com.xdja.inject.transform.TransformListener;
 import com.xdja.inject.transform.TransformManager;
 import com.xdja.inject.util.LogUtil;
@@ -27,10 +27,10 @@ public class LaunchView extends JFrame implements ActionListener{
     private final static String CHOOSE_CMD = "chooseFile";
     private final static String CHOOSE_SING_CMD = "chooseSignFile";
     private final static String COMMIT_CMD = "CommitFile";
-    private final static String CONFIRM = "ç¡®å®š";
-    private final static String CANCEL = "å–æ¶ˆ";
+    private final static String CONFIRM = "È·¶¨";
+    private final static String CANCEL = "È¡Ïû";
 
-    // è®°å½•è¾“å…¥çš„æ•°æ®
+    // ¼ÇÂ¼ÊäÈëµÄÊı¾İ
     private String mApkPath = "";
     private String mSignFilePath = "";
     private String mSignPwd = "";
@@ -59,56 +59,56 @@ public class LaunchView extends JFrame implements ActionListener{
             public void start() {
                 isTaskRunning = true;
                 refreshCommitBtnState(isTaskRunning);
-                updateTips("æ­£åœ¨å¼€å§‹æ’æ¡©ä»»åŠ¡ï¼ï¼");
+                updateTips("ÕıÔÚ¿ªÊ¼²å×®ÈÎÎñ£¡£¡");
             }
 
             @Override
             public void upzipApk(int i, String path) {
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šè§£å‹apkï¼ï¼ï¼Œè§£å‹ä¹‹åè·¯å¾„ï¼š" + path);
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šè§£å‹apkï¼ï¼ï¼Œè§£å‹ä¹‹åè·¯å¾„ï¼š" + path);
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£º½âÑ¹apk£¡£¡£¬½âÑ¹Ö®ºóÂ·¾¶£º" + path);
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£º½âÑ¹apk£¡£¡£¬½âÑ¹Ö®ºóÂ·¾¶£º" + path);
             }
 
             @Override
             public void dex2jar(int i, String path) {
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†dexè½¬æˆjarï¼ï¼");
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†dexè½¬æˆjarï¼ï¼");
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£º½«dex×ª³Éjar£¡£¡");
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£º½«dex×ª³Éjar£¡£¡");
             }
 
             @Override
             public void deleteMeta(int i, String var) {
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šåˆ é™¤apkä¸­åŸæœ‰çš„ç­¾åä¿¡æ¯ï¼ï¼");
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šåˆ é™¤apkä¸­åŸæœ‰çš„ç­¾åä¿¡æ¯ï¼ï¼");
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£ºÉ¾³ıapkÖĞÔ­ÓĞµÄÇ©ÃûĞÅÏ¢£¡£¡");
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£ºÉ¾³ıapkÖĞÔ­ÓĞµÄÇ©ÃûĞÅÏ¢£¡£¡");
             }
 
             @Override
             public void dexToapk(int i, String var) {
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†æ’æ¡©åçš„dex pushåˆ°apkä¸­ï¼ï¼");
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†æ’æ¡©åçš„dex pushåˆ°apkä¸­ï¼ï¼");
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£º½«²å×®ºóµÄdex pushµ½apkÖĞ£¡£¡");
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£º½«²å×®ºóµÄdex pushµ½apkÖĞ£¡£¡");
             }
 
             @Override
             public void codeToJar(int i, String var) {
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†å·¥å…·ç±»æ·»åŠ åˆ°jarä¸­ï¼š" + var);
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†å·¥å…·ç±»æ·»åŠ åˆ°jarä¸­ï¼š" + var);
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£º½«¹¤¾ßÀàÌí¼Óµ½jarÖĞ£º" + var);
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£º½«¹¤¾ßÀàÌí¼Óµ½jarÖĞ£º" + var);
             }
 
             @Override
             public void apkSign(int i, String var) {
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå¯¹æ’æ¡©åapkè¿›è¡Œç­¾åï¼ï¼ç­¾ååçš„apkåœ°å€ï¼š" + var);
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå¯¹æ’æ¡©åapkè¿›è¡Œç­¾åï¼ï¼ç­¾ååçš„apkåœ°å€ï¼š" + var);
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£º¶Ô²å×®ºóapk½øĞĞÇ©Ãû£¡£¡Ç©ÃûºóµÄapkµØÖ·£º" + var);
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£º¶Ô²å×®ºóapk½øĞĞÇ©Ãû£¡£¡Ç©ÃûºóµÄapkµØÖ·£º" + var);
             }
 
             @Override
             public void jar2dex(int i, String var) {
-                LogUtil.info("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†jarè½¬æˆdexï¼š" + var);
-                updateTips("æ‰§è¡Œç¬¬ " + i + " æ­¥ï¼šå°†jarè½¬æˆdexï¼š" + var);
+                LogUtil.info("Ö´ĞĞµÚ " + i + " ²½£º½«jar×ª³Édex£º" + var);
+                updateTips("Ö´ĞĞµÚ " + i + " ²½£º½«jar×ª³Édex£º" + var);
             }
 
             @Override
             public void finish(String apkPath) {
                 isTaskRunning = false;
                 refreshCommitBtnState(isTaskRunning);
-                updateTips("æ’æ¡©ä»»åŠ¡å®Œæˆï¼ï¼è¯·åœ¨ ï¼š" + apkPath + "æŸ¥çœ‹");
+                updateTips("²å×®ÈÎÎñÍê³É£¡£¡ÇëÔÚ £º" + apkPath + "²é¿´");
             }
 
             @Override
@@ -116,14 +116,14 @@ public class LaunchView extends JFrame implements ActionListener{
                 isTaskRunning = false;
                 refreshCommitBtnState(isTaskRunning);
 
-                updateTips("è¿è¡Œå‡ºé”™äº†ï¼Œé”™è¯¯ä¿¡æ¯æ˜¯ï¼š" + errorMsg);
+                updateTips("ÔËĞĞ³ö´íÁË£¬´íÎóĞÅÏ¢ÊÇ£º" + errorMsg);
             }
 
         };
     }
 
     /**
-     *  ç”¨äºæ›´æ–°æç¤ºä¿¡æ¯
+     *  ÓÃÓÚ¸üĞÂÌáÊ¾ĞÅÏ¢
      * @param msg
      */
     public void updateTips(String msg){
@@ -143,7 +143,7 @@ public class LaunchView extends JFrame implements ActionListener{
         }).start();
     }
     /**
-     *  åˆ·æ–°æ­£åœ¨æ‰§è¡Œä»»åŠ¡æ—¶çš„çŠ¶æ€
+     *  Ë¢ĞÂÕıÔÚÖ´ĞĞÈÎÎñÊ±µÄ×´Ì¬
      * @param isTrue
      */
     private void refreshCommitBtnState(boolean isTrue){
@@ -160,21 +160,21 @@ public class LaunchView extends JFrame implements ActionListener{
         }
     }
     /**
-     *  é€‰æ‹©apkæ–‡ä»¶
+     *  Ñ¡ÔñapkÎÄ¼ş
      */
     private void createChooseApk(){
-        // å¿…é¡»æ˜¾å¼è®¾ç½®å¸ƒå±€æ ¼å¼ä¸ºç©ºï¼Œå¦åˆ™ä¸ä¼šæŒ‰ç…§æˆ‘ä»¬è®¾ç½®å¥½çš„æ ¼å¼å¸ƒå±€
+        // ±ØĞëÏÔÊ½ÉèÖÃ²¼¾Ö¸ñÊ½Îª¿Õ£¬·ñÔò²»»á°´ÕÕÎÒÃÇÉèÖÃºÃµÄ¸ñÊ½²¼¾Ö
         frame.setLayout(null);
 
-        // åˆ›å»ºä¸€ä¸ªå¯ä»¥æ˜¾ç¤ºé€‰æ‹©è·¯å¾„çš„æ–‡æœ¬æ¡†
+        // ´´½¨Ò»¸ö¿ÉÒÔÏÔÊ¾Ñ¡ÔñÂ·¾¶µÄÎÄ±¾¿ò
         apkPathField = new JTextField();
         apkPathField.setEnabled(false);
         frame.add(apkPathField);
         Rectangle rect = new Rectangle(10, 10, 400, 30);
         apkPathField.setBounds(rect);
 
-        // åˆ›å»ºä¸€ä¸ªæŒ‰é’®
-        chooseBtn = new JButton("é€‰æ‹©è¦æ’æ¡©apkæ–‡ä»¶");
+        // ´´½¨Ò»¸ö°´Å¥
+        chooseBtn = new JButton("Ñ¡ÔñÒª²å×®apkÎÄ¼ş");
         frame.add(chooseBtn);
         chooseBtn.setActionCommand(CHOOSE_CMD);
         chooseBtn.setBounds(430 ,10, 150, 30);
@@ -182,25 +182,25 @@ public class LaunchView extends JFrame implements ActionListener{
     }
 
     /**
-     *  åˆ›å»ºé€‰æ‹©apkç­¾åæ–‡ä»¶çš„å†…å®¹
+     *  ´´½¨Ñ¡ÔñapkÇ©ÃûÎÄ¼şµÄÄÚÈİ
      */
     private void createChooseSignFile(){
-        // åˆ›å»ºä¸€ä¸ªå¯ä»¥æ˜¾ç¤ºé€‰æ‹©è·¯å¾„çš„æ–‡æœ¬æ¡†
+        // ´´½¨Ò»¸ö¿ÉÒÔÏÔÊ¾Ñ¡ÔñÂ·¾¶µÄÎÄ±¾¿ò
         signFileField = new JTextField();
         signFileField.setEnabled(false);
         frame.add(signFileField);
         Rectangle rect = new Rectangle(10, 50, 400, 30);
         signFileField.setBounds(rect);
 
-        // åˆ›å»ºä¸€ä¸ªæŒ‰é’®
-        chooseSignBtn = new JButton("é€‰æ‹©apkç­¾åæ–‡ä»¶");
+        // ´´½¨Ò»¸ö°´Å¥
+        chooseSignBtn = new JButton("Ñ¡ÔñapkÇ©ÃûÎÄ¼ş");
         frame.add(chooseSignBtn);
         chooseSignBtn.setActionCommand(CHOOSE_SING_CMD);
         chooseSignBtn.setBounds(430 ,50, 150, 30);
         chooseSignBtn.addActionListener(this);
 
-        // åˆ›å»ºè¾“å…¥ç­¾åå¯†ç å’ŒkeyAliasçš„è¾“å…¥æ¡†
-        JLabel pwdLabel = new JLabel("APKç­¾åæ–‡ä»¶å¯†ç :");
+        // ´´½¨ÊäÈëÇ©ÃûÃÜÂëºÍkeyAliasµÄÊäÈë¿ò
+        JLabel pwdLabel = new JLabel("APKÇ©ÃûÎÄ¼şÃÜÂë:");
         frame.add(pwdLabel);
         pwdLabel.setBounds(10, 100, 150, 30);
 
@@ -210,7 +210,7 @@ public class LaunchView extends JFrame implements ActionListener{
         Rectangle rect1 = new Rectangle(180, 100, 400, 30);
         signPwdField.setBounds(rect1);
 
-        JLabel aliasLabel = new JLabel("apkç­¾åæ–‡ä»¶keyAliasï¼š");
+        JLabel aliasLabel = new JLabel("apkÇ©ÃûÎÄ¼şkeyAlias£º");
         frame.add(aliasLabel);
         aliasLabel.setBounds(10, 150, 150, 30);
 
@@ -222,11 +222,11 @@ public class LaunchView extends JFrame implements ActionListener{
 
 
     /**
-     * åˆ›å»ºå¼€å§‹çš„æŒ‰é’®
+     * ´´½¨¿ªÊ¼µÄ°´Å¥
      */
     private void createCommitButton(){
-        // åˆ›å»ºä¸€ä¸ªæŒ‰é’®
-        JButton commitBtn = new JButton("å¼€å§‹æ’æ¡©apk");
+        // ´´½¨Ò»¸ö°´Å¥
+        JButton commitBtn = new JButton("¿ªÊ¼²å×®apk");
         frame.add(commitBtn);
         commitBtn.setActionCommand(COMMIT_CMD);
         commitBtn.setBounds(150 ,250, 300, 30);
@@ -234,10 +234,10 @@ public class LaunchView extends JFrame implements ActionListener{
     }
 
     /**
-     *  åˆ›å»ºå±•ç¤ºæç¤ºä¿¡æ¯çš„æ–‡æ¡ˆ
+     *  ´´½¨Õ¹Ê¾ÌáÊ¾ĞÅÏ¢µÄÎÄ°¸
      */
     private void createTips(){
-        tipsLabel = new JLabel("ä»»åŠ¡è¿˜æœªå¼€å§‹!!");
+        tipsLabel = new JLabel("ÈÎÎñ»¹Î´¿ªÊ¼!!");
         frame.add(tipsLabel);
         tipsLabel.setBounds(60, 300, 500, 30);
         tipsLabel.setForeground(Color.red);
@@ -267,29 +267,29 @@ public class LaunchView extends JFrame implements ActionListener{
     }
 
     /**
-     *  å¤„ç†commité€»è¾‘
+     *  ´¦ÀícommitÂß¼­
      */
     private void handleCommit(){
         mSignPwd = signPwdField.getText();
         mSignAlias = signAlias.getText();
         if (Util.isStrEmpty(mApkPath)){
-            // æ²¡æœ‰è¾“å…¥apkæ–‡ä»¶
-            showMessageDialog("è¯·åŠ¡å¿…é€‰æ‹©æ’æ¡©apkä¹‹åå†ç»§ç»­", "æ³¨æ„");
+            // Ã»ÓĞÊäÈëapkÎÄ¼ş
+            showMessageDialog("ÇëÎñ±ØÑ¡Ôñ²å×®apkÖ®ºóÔÙ¼ÌĞø", "×¢Òâ");
             return;
         }
 
         if (Util.isStrEmpty(mSignAlias) || Util.isStrEmpty(mSignFilePath) || Util.isStrEmpty(mSignPwd)){
-            // æ²¡æœ‰è¾“å…¥ç­¾åæ–‡ä»¶
-            showMessageDialog("è¯·è¾“å…¥æœ€ç»ˆAPKç­¾åä¿¡æ¯ï¼Œå¦åˆ™å°†ç”¨é»˜è®¤çš„ç­¾åä¿¡æ¯", "æ³¨æ„");
+            // Ã»ÓĞÊäÈëÇ©ÃûÎÄ¼ş
+            showMessageDialog("ÇëÊäÈë×îÖÕAPKÇ©ÃûĞÅÏ¢£¬·ñÔò½«ÓÃÄ¬ÈÏµÄÇ©ÃûĞÅÏ¢", "×¢Òâ");
         }
 
-        // å¼€å§‹å¯¹APKè¿›è¡Œå¤„ç†
+        // ¿ªÊ¼¶ÔAPK½øĞĞ´¦Àí
         mTransforManager.injectApk(mApkPath, mSignFilePath, mSignPwd, mSignAlias);
     }
 
     /**
-     *  é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶
-     *  @param endSuffix åç¼€
+     *  Ñ¡ÔñÒ»¸öÎÄ¼ş
+     *  @param endSuffix ºó×º
      * @return
      */
     private String chooseFile(String[] endSuffix){
@@ -319,16 +319,16 @@ public class LaunchView extends JFrame implements ActionListener{
                 return null;
             }
         });
-        jfc.showDialog(new JLabel(), "é€‰æ‹©");
+        jfc.showDialog(new JLabel(), "Ñ¡Ôñ");
         File file=jfc.getSelectedFile();
         if (file == null){
             return "";
         }
 
         if(file.isDirectory()){
-            System.out.println("æ–‡ä»¶å¤¹:"+file.getAbsolutePath());
+            System.out.println("ÎÄ¼ş¼Ğ:"+file.getAbsolutePath());
         }else if(file.isFile()){
-            System.out.println("æ–‡ä»¶:"+file.getAbsolutePath());
+            System.out.println("ÎÄ¼ş:"+file.getAbsolutePath());
         }
 
         return file.getAbsolutePath();
@@ -338,14 +338,14 @@ public class LaunchView extends JFrame implements ActionListener{
      * */
     private void exit() {
         Object[] options = { CONFIRM, CANCEL };
-        JOptionPane warnPane = new JOptionPane("çœŸæƒ³é€€å‡ºå—?",
+        JOptionPane warnPane = new JOptionPane("ÕæÏëÍË³öÂğ?",
                 JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION, null,
                 options, options[1]);
-        JDialog dialog = warnPane.createDialog(this, "æç¤º");
+        JDialog dialog = warnPane.createDialog(this, "ÌáÊ¾");
         dialog.setVisible(true);
         Object selectedValue = warnPane.getValue();
         if (selectedValue == null || selectedValue == options[1]) {
-            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // è¿™ä¸ªæ˜¯å…³é”®
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Õâ¸öÊÇ¹Ø¼ü
         } else if (selectedValue == options[0]) {
             System.out.print("exit..");
             setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -353,7 +353,7 @@ public class LaunchView extends JFrame implements ActionListener{
     }
 
     /**
-     *  æ˜¾ç¤ºä¿¡æ¯æç¤ºæ¡†
+     *  ÏÔÊ¾ĞÅÏ¢ÌáÊ¾¿ò
      */
     private void showMessageDialog(String msg, String title){
         JOptionPane.showMessageDialog(null, msg, title,
@@ -362,7 +362,7 @@ public class LaunchView extends JFrame implements ActionListener{
 
 
     private void addActionListener(){
-        //ä¸»çª—å£æ·»åŠ å…³é—­ç›‘å¬å™¨
+        //Ö÷´°¿ÚÌí¼Ó¹Ø±Õ¼àÌıÆ÷
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

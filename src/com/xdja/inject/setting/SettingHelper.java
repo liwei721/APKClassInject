@@ -2,14 +2,13 @@ package com.xdja.inject.setting;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.xdja.inject.Constants;
+import com.xdja.inject.consant.Constants;
 import com.xdja.inject.util.FilesUtil;
 import com.xdja.inject.util.InjectUtil;
 import com.xdja.inject.util.LogUtil;
 import com.xdja.inject.util.Util;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
