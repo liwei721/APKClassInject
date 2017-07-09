@@ -74,7 +74,8 @@ public class Dex2jarUtil {
             }
 
             String dexName = jarName2DexName(jarFile.getName());
-            String outDexPath = tempDir + File.separator+ dexName;
+            // out dex必须放到根目录中，否则会给后面将dex放到apk中造成困难。
+            String outDexPath = FilesUtil.getBaseProjectPath() + File.separator+ dexName;
             File outDexFile = new File(outDexPath);
             if (!outDexFile.getParentFile().exists()){
                 boolean isSuc = outDexFile.getParentFile().mkdirs();
@@ -174,7 +175,7 @@ public class Dex2jarUtil {
 
                 for (File dexFile : tempDexFiles){
                     if (dexFile.getName().endsWith(".dex")){
-                        addCmd = addCmd + " " + dexFile.getAbsolutePath();
+                        addCmd = addCmd + " " + dexFile.getName();
                     }
                 }
 

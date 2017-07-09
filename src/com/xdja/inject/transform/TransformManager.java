@@ -77,7 +77,7 @@ public class TransformManager {
 
             // 5. 将上面的dex放到apk中
             transformListener.dexToapk(4, apkPath);
-            boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, tempDir);
+            boolean isSuc1 = Dex2jarUtil.addDexToApk(apkPath, FilesUtil.getBaseProjectPath());
             if (!isSuc1) {
                 transformListener.showError("将dex放到apk中失败了");
                 LogUtil.info("将dex放到apk中失败了");
@@ -129,11 +129,11 @@ public class TransformManager {
         SettingHelper.getInstance().clearData();
 
         // 删除无用的临时文件
-        //  删除temp目录
-        boolean suc = FilesUtil.deleteTempDir();
-        if (!suc){
-            transformListener.showError("删除临时目录失败了");
-        }
+//        //  删除temp目录
+//        boolean suc = FilesUtil.deleteTempDir();
+//        if (!suc){
+//            transformListener.showError("删除临时目录失败了");
+//        }
 
     }
 
@@ -152,10 +152,10 @@ public class TransformManager {
 //        LogUtil.info("Test");
 //        List<String> jars = Dex2jarUtil.dex2jarImpl(FilesUtil.getTempDirPath());
         try {
-            String tempdir =   FilesUtil.decompressApk("F:\\com.hupu.games_7.0.17.9574_liqucn.com.apk");
+            String tempdir =   FilesUtil.decompressApk("E:\\app-debug.apk");
             List<String> jars = Dex2jarUtil.dex2jarImpl(tempdir);
             Dex2jarUtil.jar2Dex(jars, tempdir);
-            Dex2jarUtil.addDexToApk("F:\\com.hupu.games_7.0.17.9574_liqucn.com.apk", tempdir);
+            Dex2jarUtil.addDexToApk("E:\\app-debug.apk", FilesUtil.getBaseProjectPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
