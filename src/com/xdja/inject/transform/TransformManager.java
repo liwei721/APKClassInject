@@ -129,11 +129,11 @@ public class TransformManager {
         SettingHelper.getInstance().clearData();
 
         // 删除无用的临时文件
-//        //  删除temp目录
-//        boolean suc = FilesUtil.deleteTempDir();
-//        if (!suc){
-//            transformListener.showError("删除临时目录失败了");
-//        }
+        //  删除temp目录
+        boolean suc = FilesUtil.deleteTempDir();
+        if (!suc){
+            transformListener.showError("删除临时目录失败了");
+        }
 
     }
 
